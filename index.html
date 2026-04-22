@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HAO SHEN — Academic Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d1117;
+      --surface:   #161b22;
+      --surface2:  #1e2530;
+      --border:    #30363d;
+      --accent:    #58a6ff;
+      --accent2:   #bc8cff;
+      --accent3:   #3fb950;
+      --text:      #e6edf3;
+      --muted:     #8b949e;
+      --tag-bg:    #1f3247;
+      --radius:    12px;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    section:last-child { border-bottom: none; }
+
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,17,23,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+
+    /* ── Hero / About ─────────────────────────────────────────── */
+    #about { padding-top: 100px; }
+    .hero {
+      display: flex;
+      gap: 60px;
+      align-items: flex-start;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      color: white;
+      border: 3px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .photo-hint {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(0,0,0,0.55);
+      font-size: 0.6rem;
+      text-align: center;
+      padding: 4px;
+      color: #ccc;
+    }
+    .hero-text h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .hero-tagline {
+      font-size: 0.95rem;
+      color: var(--accent2);
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+    .hero-bio {
+      font-size: 0.92rem;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 24px;
+    }
+    .social-links { display: flex; gap: 14px; flex-wrap: wrap; }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: all var(--transition);
+    }
+    .social-btn:hover {
+      border-color: var(--accent);
+      background: var(--tag-bg);
+      text-decoration: none;
+      color: var(--accent);
+    }
+    .social-btn i { font-size: 0.95rem; }
+
+    /* ── Education ────────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px; top: 4px; bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -32px; top: 4px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+    .timeline-item.master .timeline-dot  { background: var(--accent2); box-shadow: 0 0 0 1px var(--accent2); }
+    .timeline-item.bachelor .timeline-dot { background: var(--accent3); box-shadow: 0 0 0 1px var(--accent3); }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      transition: border-color var(--transition);
+    }
+    .edu-card:hover { border-color: var(--accent); }
+    .edu-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .edu-degree { font-weight: 600; font-size: 1rem; }
+    .edu-year {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--tag-bg);
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .edu-inst { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+    .edu-major { color: var(--accent2); font-size: 0.82rem; margin-top: 6px; }
+
+    /* ── Research Interests ───────────────────────────────────── */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .research-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    .research-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(88,166,255,0.12);
+    }
+    .research-icon { font-size: 1.8rem; }
+    .research-name { font-weight: 600; font-size: 0.9rem; }
+    .research-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── Publications ─────────────────────────────────────────── */
+    .pub-list { display: flex; flex-direction: column; gap: 20px; }
+    .pub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      transition: border-color var(--transition);
+    }
+    .pub-card:hover { border-color: var(--accent); }
+    .pub-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .pub-title { font-weight: 600; font-size: 0.97rem; line-height: 1.4; }
+    .pub-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .badge-conf  { background: #1c3a5e; color: #58a6ff; }
+    .badge-jour  { background: #1e3a2f; color: #3fb950; }
+    .badge-pre   { background: #2e2a3a; color: #bc8cff; }
+    .pub-authors { font-size: 0.82rem; color: var(--muted); margin-top: 6px; }
+    .pub-authors .me { color: var(--text); font-weight: 600; }
+    .pub-venue { font-size: 0.82rem; color: var(--accent2); margin-top: 4px; font-style: italic; }
+    .pub-links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .pub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.77rem;
+      font-weight: 500;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 12px;
+      transition: all var(--transition);
+    }
+    .pub-link:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Skills ───────────────────────────────────────────────── */
+    .skills-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+    .skill-group-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+    .skill-bars { display: flex; flex-direction: column; gap: 14px; }
+    .skill-row { }
+    .skill-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      margin-bottom: 6px;
+    }
+    .skill-pct { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; }
+    .skill-bar {
+      height: 5px;
+      background: var(--border);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform-origin: left;
+      animation: growBar 1s ease forwards;
+    }
+    @keyframes growBar { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    .tool-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tool-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      transition: all var(--transition);
+    }
+    .tool-tag:hover {
+      border-color: var(--accent);
+      background: var(--tag-bg);
+    }
+    .tool-icon { font-size: 1rem; }
+
+    /* ── Honors ───────────────────────────────────────────────── */
+    .award-list { display: flex; flex-direction: column; gap: 14px; }
+    .award-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      transition: border-color var(--transition);
+    }
+    .award-item:hover { border-color: #f0b429; }
+    .award-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      color: #f0b429;
+      min-width: 44px;
+      padding-top: 2px;
+    }
+    .award-icon { font-size: 1.3rem; flex-shrink: 0; }
+    .award-text { flex: 1; }
+    .award-name { font-weight: 600; font-size: 0.92rem; }
+    .award-org { font-size: 0.82rem; color: var(--muted); margin-top: 2px; }
+
+    /* ── Hobbies ──────────────────────────────────────────────── */
+    .hobbies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 16px;
+    }
+    .hobby-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    .hobby-card:hover {
+      border-color: var(--accent2);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(188,140,255,0.12);
+    }
+    .hobby-emoji { font-size: 2.2rem; display: block; margin-bottom: 10px; }
+    .hobby-name { font-size: 0.88rem; font-weight: 600; }
+    .hobby-desc { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    footer a { color: var(--accent); }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      .hero { flex-direction: column; gap: 32px; }
+      .hero-photo { width: 120px; height: 120px; }
+      .hero-text h1 { font-size: 1.8rem; }
+      .skills-section { grid-template-columns: 1fr; }
+      .nav-links { gap: 16px; }
+      .nav-links a:nth-child(n+5) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ───────────────────────────────────────────── -->
+<nav>
+  <div class="container nav-inner">
+    <span class="nav-brand">tsuki-sh</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+      <a href="#honors">Honors</a>
+      <a href="#hobbies">Hobbies</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── About ─────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-photo">
+        <!-- Replace src with your actual photo path, e.g. assets/photo.jpg -->
+        <!-- <img src="assets/photo.jpg" alt="Profile photo" /> -->
+        <i class="fa-solid fa-user"></i>
+        <span class="photo-hint">photo here</span>
+      </div>
+      <div class="hero-text">
+        <h1>Tsuki Sh</h1>
+        <p class="hero-subtitle">PhD Student &nbsp;·&nbsp; [Your University] &nbsp;·&nbsp; [Department]</p>
+        <p class="hero-tagline">"Bridging formal mathematics and machine intelligence."</p>
+        <p class="hero-bio">
+          I am a PhD student interested in the intersection of formal theorem proving,
+          computer algebra, and large language models. My work focuses on formalizing
+          classical algebraic algorithms (e.g., Gröbner bases, Wu–Ritt method) in
+          proof assistants like Lean 4, and on building LLM-powered agents that
+          can reason about and generate formal mathematical proofs.
+        </p>
+        <div class="social-links">
+          <a class="social-btn" href="mailto:sh6319143@gmail.com">
+            <i class="fa-solid fa-envelope"></i> Email
+          </a>
+          <a class="social-btn" href="https://github.com/tsuki8" target="_blank">
+            <i class="fa-brands fa-github"></i> GitHub
+          </a>
+          <a class="social-btn" href="#" target="_blank">
+            <i class="fa-brands fa-google-scholar"></i> Scholar
+          </a>
+          <a class="social-btn" href="#" target="_blank">
+            <i class="fa-solid fa-file-pdf"></i> CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Education ─────────────────────────────────────────────── -->
+<section id="education">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+    <div class="timeline">
+
+      <div class="timeline-item phd">
+        <div class="timeline-dot"></div>
+        <div class="edu-card">
+          <div class="edu-header">
+            <span class="edu-degree">Ph.D. in [Your Major]</span>
+            <span class="edu-year">2023 – Present</span>
+          </div>
+          <div class="edu-inst"><i class="fa-solid fa-building-columns" style="margin-right:6px;color:var(--accent)"></i>[University Name], [City, Country]</div>
+          <div class="edu-major">Advisor: Prof. [Advisor Name] &nbsp;·&nbsp; Topic: Formal Verification &amp; Automated Theorem Proving</div>
+        </div>
+      </div>
+
+      <div class="timeline-item master">
+        <div class="timeline-dot"></div>
+        <div class="edu-card">
+          <div class="edu-header">
+            <span class="edu-degree">M.Sc. in [Your Major]</span>
+            <span class="edu-year">2020 – 2023</span>
+          </div>
+          <div class="edu-inst"><i class="fa-solid fa-building-columns" style="margin-right:6px;color:var(--accent2)"></i>[University Name], [City, Country]</div>
+          <div class="edu-major">Thesis: [Your Thesis Title]</div>
+        </div>
+      </div>
+
+      <div class="timeline-item bachelor">
+        <div class="timeline-dot"></div>
+        <div class="edu-card">
+          <div class="edu-header">
+            <span class="edu-degree">B.Sc. in [Your Major]</span>
+            <span class="edu-year">2016 – 2020</span>
+          </div>
+          <div class="edu-inst"><i class="fa-solid fa-building-columns" style="margin-right:6px;color:var(--accent3)"></i>[University Name], [City, Country]</div>
+          <div class="edu-major">GPA: [X.XX / 4.0] &nbsp;·&nbsp; Graduated with Honors</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Research Interests ─────────────────────────────────────── -->
+<section id="research">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-flask"></i> Research Interests</h2>
+    <div class="research-grid">
+
+      <div class="research-card">
+        <div class="research-icon">📐</div>
+        <div class="research-name">Formal Theorem Proving</div>
+        <div class="research-desc">Mechanized verification of mathematical theorems using Lean 4 and Mathlib.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">🔢</div>
+        <div class="research-name">Computer Algebra</div>
+        <div class="research-desc">Gröbner bases, characteristic sets, Wu–Ritt method, and polynomial systems.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">🤖</div>
+        <div class="research-name">LLM for Mathematics</div>
+        <div class="research-desc">Training and prompting large language models to generate formal proofs.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">🧠</div>
+        <div class="research-name">Automated Reasoning</div>
+        <div class="research-desc">Search, synthesis, and planning algorithms for mathematical reasoning agents.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">🔗</div>
+        <div class="research-name">Commutative Algebra</div>
+        <div class="research-desc">Algebraic geometry, ideal theory, and their formalization in proof assistants.</div>
+      </div>
+
+      <div class="research-card">
+        <div class="research-icon">🌲</div>
+        <div class="research-name">Proof Search</div>
+        <div class="research-desc">Tree-based and neural proof search for interactive theorem provers.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Publications ───────────────────────────────────────────── -->
+<section id="publications">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-book-open"></i> Publications</h2>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <div class="pub-top">
+          <div class="pub-title">Formalizing Gröbner Bases in Lean 4: A Complete Mechanized Proof</div>
+          <span class="pub-badge badge-conf">Conference</span>
+        </div>
+        <div class="pub-authors"><span class="me">Tsuki Sh</span>, Co-Author A, Co-Author B</div>
+        <div class="pub-venue">Proceedings of [Conference Name] (CONF 'XX), [City], [Year]</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+          <a class="pub-link" href="#"><i class="fa-brands fa-github"></i> Code</a>
+          <a class="pub-link" href="#"><i class="fa-solid fa-quote-right"></i> BibTeX</a>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-top">
+          <div class="pub-title">Wu–Ritt Characteristic Set Method: A Lean Formalization</div>
+          <span class="pub-badge badge-jour">Journal</span>
+        </div>
+        <div class="pub-authors"><span class="me">Tsuki Sh</span>, Co-Author C</div>
+        <div class="pub-venue">Journal of [Field] (JOUR), Vol. XX, [Year]</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+          <a class="pub-link" href="#"><i class="fa-brands fa-github"></i> Code</a>
+          <a class="pub-link" href="#"><i class="fa-solid fa-quote-right"></i> BibTeX</a>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-top">
+          <div class="pub-title">A Quantitative Commutator Theorem for Zero-Trace Matrices</div>
+          <span class="pub-badge badge-pre">Preprint</span>
+        </div>
+        <div class="pub-authors"><span class="me">Tsuki Sh</span>, Co-Author D, Co-Author E</div>
+        <div class="pub-venue">arXiv preprint arXiv:XXXX.XXXXX, [Year]</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#"><i class="fa-solid fa-file-pdf"></i> arXiv</a>
+          <a class="pub-link" href="#"><i class="fa-solid fa-quote-right"></i> BibTeX</a>
+        </div>
+      </div>
+
+      <div class="pub-card">
+        <div class="pub-top">
+          <div class="pub-title">LLM-Powered Agents for Automated Lean Proof Generation</div>
+          <span class="pub-badge badge-conf">Conference</span>
+        </div>
+        <div class="pub-authors"><span class="me">Tsuki Sh</span>, Co-Author F, Co-Author G</div>
+        <div class="pub-venue">Workshop on [Topic] @ [Conference] ([Year])</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#"><i class="fa-solid fa-file-pdf"></i> PDF</a>
+          <a class="pub-link" href="#"><i class="fa-brands fa-github"></i> Code</a>
+          <a class="pub-link" href="#"><i class="fa-solid fa-quote-right"></i> BibTeX</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Skills ─────────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Skills</h2>
+    <div class="skills-section">
+
+      <div>
+        <p class="skill-group-title">Programming Languages</p>
+        <div class="skill-bars">
+          <div class="skill-row">
+            <div class="skill-label"><span>Python</span><span class="skill-pct">95%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Lean 4</span><span class="skill-pct">88%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>Haskell / OCaml</span><span class="skill-pct">70%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>C / C++</span><span class="skill-pct">65%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+          </div>
+          <div class="skill-row">
+            <div class="skill-label"><span>JavaScript / TypeScript</span><span class="skill-pct">60%</span></div>
+            <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="skill-group-title">Frameworks &amp; Tools</p>
+        <div class="tool-grid">
+          <span class="tool-tag"><span class="tool-icon">🔥</span> PyTorch</span>
+          <span class="tool-tag"><span class="tool-icon">🤗</span> Hugging Face</span>
+          <span class="tool-tag"><span class="tool-icon">🦜</span> LangChain</span>
+          <span class="tool-tag"><span class="tool-icon">📐</span> Mathlib4</span>
+          <span class="tool-tag"><span class="tool-icon">🧮</span> SageMath</span>
+          <span class="tool-tag"><span class="tool-icon">🐙</span> Git / GitHub</span>
+          <span class="tool-tag"><span class="tool-icon">🐳</span> Docker</span>
+          <span class="tool-tag"><span class="tool-icon">☁️</span> SLURM / HPC</span>
+          <span class="tool-tag"><span class="tool-icon">📊</span> LaTeX</span>
+          <span class="tool-tag"><span class="tool-icon">🐍</span> NumPy / SciPy</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Honors & Awards ────────────────────────────────────────── -->
+<section id="honors">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Honors &amp; Awards</h2>
+    <div class="award-list">
+
+      <div class="award-item">
+        <span class="award-year">2024</span>
+        <span class="award-icon">🥇</span>
+        <div class="award-text">
+          <div class="award-name">Best Paper Award</div>
+          <div class="award-org">[Conference Name] — [Track/Category]</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2023</span>
+        <span class="award-icon">🎓</span>
+        <div class="award-text">
+          <div class="award-name">PhD Fellowship / Scholarship</div>
+          <div class="award-org">[Funding Body / University], [Amount or Duration]</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2022</span>
+        <span class="award-icon">🌟</span>
+        <div class="award-text">
+          <div class="award-name">National Graduate Research Scholarship</div>
+          <div class="award-org">[Granting Organization], [Country]</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2020</span>
+        <span class="award-icon">🏅</span>
+        <div class="award-text">
+          <div class="award-name">Outstanding Graduate / Dean's List</div>
+          <div class="award-org">[University Name], Class of 2020</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <span class="award-year">2019</span>
+        <span class="award-icon">🏆</span>
+        <div class="award-text">
+          <div class="award-name">Mathematical Competition — [Prize Level]</div>
+          <div class="award-org">[Competition Name], [Organizing Body]</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Hobbies ────────────────────────────────────────────────── -->
+<section id="hobbies">
+  <div class="container">
+    <h2 class="section-title"><i class="fa-solid fa-heart"></i> Personal Interests</h2>
+    <div class="hobbies-grid">
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">📷</span>
+        <div class="hobby-name">Photography</div>
+        <div class="hobby-desc">Street &amp; landscape, analog film</div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">🥾</span>
+        <div class="hobby-name">Hiking</div>
+        <div class="hobby-desc">Mountain trails &amp; off-the-beaten-path</div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">🍳</span>
+        <div class="hobby-name">Cooking</div>
+        <div class="hobby-desc">East Asian cuisines &amp; experimenting</div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">🎵</span>
+        <div class="hobby-name">Music</div>
+        <div class="hobby-desc">Jazz, classical piano &amp; lo-fi beats</div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">📚</span>
+        <div class="hobby-name">Reading</div>
+        <div class="hobby-desc">Philosophy of mathematics &amp; sci-fi</div>
+      </div>
+
+      <div class="hobby-card">
+        <span class="hobby-emoji">♟️</span>
+        <div class="hobby-name">Chess / Go</div>
+        <div class="hobby-desc">Blitz chess, amateur Go player</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <p>© 2026 Tsuki Sh &nbsp;·&nbsp; Built with ♥ and hosted on
+      <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+    </p>
+    <p style="margin-top:6px">Last updated: April 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
