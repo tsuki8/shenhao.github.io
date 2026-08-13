@@ -1,766 +1,607 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Hao Shen — Ph.D. student at AMSS, UCAS. Research in formal mathematics, automated theorem proving, and AI for mathematics." />
-  <meta name="theme-color" content="#f6f4ee" />
-  <title>Hao Shen | AMSS, UCAS</title>
+  <meta name="theme-color" content="#ffffff" />
+  <title>Hao Shen</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
 
     :root {
-      --paper: #f6f4ee;
-      --paper-deep: #eeeae0;
-      --white: #fffefa;
-      --ink: #17243a;
-      --body: #3c4655;
-      --muted: #717887;
-      --rule: #d8d4ca;
-      --rule-dark: #bbb6aa;
-      --red: #982f32;
-      --red-soft: #f1e3e1;
-      --blue-soft: #e7ecf2;
-      --serif: 'Source Serif 4', Georgia, serif;
-      --sans: 'Inter', Arial, sans-serif;
-      --max: 1080px;
+      --ink: #333;
+      --heading: #252a34;
+      --muted: #6f7278;
+      --link: #287b8e;
+      --link-dark: #185b6a;
+      --line: #e2e2e2;
+      --soft: #f7f7f7;
+      --paper: #fff;
+      --max-width: 1180px;
     }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
 
     body {
       margin: 0;
-      color: var(--body);
+      color: var(--ink);
       background: var(--paper);
-      font-family: var(--sans);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 15px;
-      line-height: 1.7;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: '';
-      display: block;
-      position: fixed;
-      inset: 0 0 auto;
-      z-index: 200;
-      height: 4px;
-      background: var(--red);
-    }
-
-    a { color: inherit; text-decoration-color: rgba(152, 47, 50, 0.4); text-underline-offset: 3px; }
-    a:hover { color: var(--red); text-decoration-color: var(--red); }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--link-dark); text-decoration: underline; }
     img { display: block; max-width: 100%; }
     button { color: inherit; font: inherit; }
-    ::selection { color: white; background: var(--red); }
+    ::selection { color: white; background: var(--link); }
+
+    .container { width: min(var(--max-width), calc(100% - 48px)); margin-inline: auto; }
 
     .skip-link {
       position: fixed;
-      top: 12px;
-      left: 12px;
-      z-index: 300;
-      padding: 9px 13px;
+      top: 8px;
+      left: 8px;
+      z-index: 999;
+      padding: 8px 12px;
       color: white;
-      background: var(--ink);
+      background: var(--heading);
       transform: translateY(-160%);
     }
 
     .skip-link:focus { transform: none; }
-    .container { width: min(var(--max), calc(100% - 48px)); margin-inline: auto; }
 
-    /* Header */
-    .site-header {
+    /* Masthead */
+    .masthead {
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(216, 212, 202, 0.9);
-      background: rgba(246, 244, 238, 0.94);
-      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(10px);
     }
 
-    .nav {
+    .masthead-inner {
       display: flex;
-      min-height: 72px;
+      min-height: 70px;
       align-items: center;
       justify-content: space-between;
     }
 
-    .brand { text-decoration: none; }
-
-    .brand strong {
-      display: block;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+    .site-title {
+      color: var(--heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      text-decoration: none;
     }
 
-    .brand span {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
+    .site-title:hover { color: var(--heading); text-decoration: none; }
 
-    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .site-nav { display: flex; align-items: center; gap: 30px; }
 
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.75rem;
+    .site-nav a {
+      color: #555;
+      font-size: 0.82rem;
       font-weight: 500;
       text-decoration: none;
-      transition: color 0.18s ease;
     }
 
-    .nav-links a:hover, .nav-links a.active { color: var(--red); }
+    .site-nav a:hover, .site-nav a.active { color: var(--link); }
 
-    .menu-button {
+    .nav-toggle {
       display: none;
       width: 40px;
       height: 40px;
       padding: 0;
-      border: 1px solid var(--rule);
+      border: 0;
       background: transparent;
       cursor: pointer;
     }
 
-    .menu-button span, .menu-button::before, .menu-button::after {
-      display: block;
-      width: 17px;
-      height: 1px;
-      margin: 4px auto;
-      background: var(--ink);
-      content: '';
-    }
+    .nav-toggle i { font-size: 1rem; }
 
-    /* Shared typography */
-    section { padding: 88px 0; border-top: 1px solid var(--rule); }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      gap: 36px;
-      margin-bottom: 40px;
-      align-items: baseline;
-    }
-
-    .section-label {
-      margin: 0;
-      color: var(--red);
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.13em;
-      text-transform: uppercase;
-    }
-
-    .section-label::before { content: '— '; }
-
-    .section-head h2 {
-      margin: 0;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.8vw, 3.3rem);
-      font-weight: 500;
-      letter-spacing: -0.035em;
-      line-height: 1.12;
-    }
-
-    /* Hero */
-    .hero { padding: 88px 0 78px; border-top: 0; }
-
-    .hero-grid {
+    /* Two-column academic layout */
+    .page-layout {
       display: grid;
       grid-template-columns: 250px minmax(0, 1fr);
-      gap: clamp(46px, 7vw, 86px);
+      gap: clamp(54px, 7vw, 92px);
+      padding: 58px 0 82px;
       align-items: start;
     }
 
-    .portrait { position: relative; }
+    .author-profile {
+      position: sticky;
+      top: 112px;
+      align-self: start;
+    }
 
-    .portrait img {
+    .author-photo {
+      width: 180px;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: var(--soft);
+    }
+
+    .author-photo img {
       width: 100%;
-      aspect-ratio: 0.78;
+      height: 100%;
       object-fit: cover;
       object-position: 51% 54%;
-      filter: saturate(0.83) contrast(0.98);
+      transform: scale(1.65);
+      transform-origin: 43% 35%;
     }
 
-    .portrait::after {
-      content: '';
-      position: absolute;
-      inset: 12px -12px -12px 12px;
-      z-index: -1;
-      border: 1px solid var(--rule-dark);
+    .author-name {
+      margin: 24px 0 4px;
+      color: var(--heading);
+      font-size: 1.18rem;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .portrait-caption {
-      margin: 22px 0 0;
-      color: var(--muted);
-      font-size: 0.68rem;
-      letter-spacing: 0.04em;
-      line-height: 1.55;
+    .author-tagline { margin: 0; color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
+
+    .profile-heading {
+      margin: 25px 0 9px;
+      color: var(--heading);
+      font-size: 0.76rem;
+      font-weight: 700;
     }
 
-    .hero-kicker {
-      margin: 1px 0 17px;
-      color: var(--red);
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
+    .profile-list { margin: 0; padding: 0; list-style: none; }
+
+    .profile-list li {
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 7px;
+      margin: 8px 0;
+      align-items: baseline;
+      color: #555;
+      font-size: 0.74rem;
+      line-height: 1.45;
     }
 
-    .hero h1 {
-      margin: 0;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: clamp(3.6rem, 7.5vw, 6.5rem);
-      font-weight: 500;
-      letter-spacing: -0.055em;
-      line-height: 0.92;
+    .profile-list i { color: #777; text-align: center; }
+    .profile-list a { color: #555; }
+    .profile-list a:hover { color: var(--link); }
+
+    .main-content { min-width: 0; }
+
+    .content-section {
+      padding: 0 0 54px;
+      scroll-margin-top: 92px;
     }
 
-    .hero-role {
-      margin: 22px 0 0;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: clamp(1.2rem, 2vw, 1.55rem);
+    .content-section + .content-section { padding-top: 5px; }
+
+    h1, h2, h3 { color: var(--heading); }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 3.4vw, 2.55rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.22;
+    }
+
+    h2 {
+      margin: 0 0 24px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid var(--line);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       line-height: 1.35;
     }
 
-    .hero-bio { max-width: 680px; margin: 26px 0 0; color: var(--body); font-size: 0.96rem; }
-    .hero-bio strong { color: var(--ink); font-weight: 600; }
-
-    .profile-links { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 30px; }
-
-    .profile-link {
-      display: inline-flex;
-      min-height: 39px;
-      padding: 0 14px;
-      align-items: center;
-      gap: 8px;
-      color: var(--ink);
-      border: 1px solid var(--rule-dark);
-      background: transparent;
-      font-size: 0.72rem;
+    .degree-line {
+      margin: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.79rem;
       font-weight: 500;
-      text-decoration: none;
-      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      word-spacing: 2px;
     }
 
-    .profile-link:hover { color: white; border-color: var(--red); background: var(--red); }
-    .profile-link .arrow { font-family: Georgia, serif; font-size: 0.95rem; }
+    .bio p { margin: 0 0 14px; }
+    .bio strong { color: var(--heading); font-weight: 600; }
 
-    /* Latest paper */
-    .latest-wrap { margin-top: 56px; }
+    .contact-note {
+      margin-top: 22px;
+      padding: 13px 16px;
+      border-left: 3px solid var(--link);
+      background: #f5f8f9;
+      font-size: 0.82rem;
+    }
 
-    .latest-paper {
+    .contact-note strong { color: var(--heading); }
+
+    /* News */
+    .news-list { margin: 0; padding: 0; list-style: none; }
+
+    .news-item {
       display: grid;
-      grid-template-columns: 180px minmax(0, 1fr) auto;
-      gap: 36px;
-      padding: 27px 0;
-      align-items: start;
-      border-top: 2px solid var(--ink);
-      border-bottom: 1px solid var(--rule-dark);
+      grid-template-columns: 112px minmax(0, 1fr);
+      gap: 18px;
+      padding: 9px 0;
+      border-bottom: 1px dashed #e7e7e7;
+      font-size: 0.8rem;
     }
 
-    .latest-meta {
-      color: var(--red);
-      font-size: 0.66rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+    .news-item:last-child { border-bottom: 0; }
+    .news-date { color: var(--muted); font-weight: 500; white-space: nowrap; }
+    .news-item strong { color: var(--heading); font-weight: 600; }
+    .new-label { margin-left: 6px; color: #c0392b; font-size: 0.62rem; font-weight: 700; vertical-align: 1px; }
+
+    /* Education */
+    .education-list { display: grid; gap: 24px; }
+
+    .education-item {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: center;
     }
 
-    .latest-meta time { display: block; margin-top: 5px; color: var(--muted); font-weight: 400; letter-spacing: 0.04em; }
-
-    .latest-content h2 {
-      margin: 0;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: clamp(1.45rem, 2.6vw, 2.15rem);
-      font-weight: 500;
-      letter-spacing: -0.025em;
-      line-height: 1.18;
+    .institution-mark {
+      display: grid;
+      width: 66px;
+      height: 66px;
+      place-items: center;
+      color: var(--link-dark);
+      border: 1px solid #cbdade;
+      background: #f3f8f9;
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
-    .authors { margin: 10px 0 0; color: var(--muted); font-size: 0.78rem; }
-    .authors strong { color: var(--ink); font-weight: 600; }
+    .institution-mark.whu { color: #783a2c; border-color: #dbcac6; background: #faf5f3; }
 
-    .latest-abstract {
-      max-width: 740px;
-      margin: 15px 0 0;
-      color: var(--body);
-      font-family: var(--serif);
-      font-size: 0.94rem;
-      line-height: 1.65;
-    }
-
-    .paper-actions { display: flex; flex-direction: column; gap: 8px; }
-
-    .paper-action {
-      display: inline-flex;
-      min-width: 88px;
-      padding: 8px 12px;
-      justify-content: space-between;
-      gap: 14px;
-      color: var(--ink);
-      border-bottom: 1px solid var(--rule-dark);
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .paper-action:hover { color: var(--red); border-color: var(--red); }
-
-    /* Research */
-    .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule-dark); }
-
-    .research-item {
-      min-height: 245px;
-      padding: 25px 28px 28px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .research-item + .research-item { padding-left: 28px; border-left: 1px solid var(--rule); }
-    .research-number { color: var(--red); font-family: var(--serif); font-size: 0.85rem; }
-
-    .research-item h3 {
-      margin: 54px 0 14px;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 500;
-      line-height: 1.2;
-    }
-
-    .research-item p { margin: 0; color: var(--muted); font-size: 0.8rem; line-height: 1.65; }
+    .education-item h3 { margin: 0; font-size: 0.92rem; font-weight: 600; line-height: 1.4; }
+    .education-item p { margin: 4px 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
+    .education-date { color: var(--muted); font-size: 0.7rem; white-space: nowrap; }
 
     /* Publications */
-    .publication-list { border-top: 1px solid var(--rule-dark); }
+    .section-note { margin: -12px 0 25px; color: var(--muted); font-size: 0.76rem; }
+    .publication-list { display: grid; gap: 30px; }
 
     .publication {
       display: grid;
-      grid-template-columns: 70px minmax(0, 1fr) 120px;
-      gap: 28px;
-      padding: 28px 0;
-      border-bottom: 1px solid var(--rule);
+      grid-template-columns: 170px minmax(0, 1fr);
+      gap: 23px;
+      align-items: start;
     }
 
-    .pub-index { color: var(--red); font-family: var(--serif); font-size: 0.86rem; }
+    .paper-thumb {
+      position: relative;
+      display: grid;
+      min-height: 112px;
+      overflow: hidden;
+      padding: 14px;
+      align-content: space-between;
+      color: white;
+      background: #466d78;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
 
-    .pub-title {
-      margin: 0;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.22rem;
+    .paper-thumb::before {
+      content: '';
+      position: absolute;
+      right: -18px;
+      bottom: -28px;
+      width: 104px;
+      height: 104px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 50%;
+    }
+
+    .paper-thumb::after {
+      content: '';
+      position: absolute;
+      right: 23px;
+      bottom: 18px;
+      width: 78px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.65);
+      transform: rotate(-31deg);
+    }
+
+    .paper-thumb.algebra { background: #59617c; }
+    .paper-thumb.wuritt { background: #775d58; }
+    .paper-thumb.grobner { background: #5f786a; }
+    .thumb-topic { position: relative; z-index: 1; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
+    .thumb-mark { position: relative; z-index: 1; font-family: Georgia, serif; font-size: 1.48rem; font-style: italic; line-height: 1; }
+
+    .publication h3 { margin: 0 0 6px; font-size: 0.96rem; font-weight: 600; line-height: 1.42; }
+    .pub-authors { margin: 0; color: #555; font-size: 0.74rem; line-height: 1.55; }
+    .pub-authors .me { color: var(--heading); font-weight: 700; }
+    .pub-venue { margin: 4px 0 0; color: var(--muted); font-size: 0.72rem; font-style: italic; }
+    .pub-description { margin: 8px 0 0; color: var(--muted); font-size: 0.72rem; line-height: 1.55; }
+    .pub-buttons { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+
+    .pub-button {
+      display: inline-flex;
+      padding: 4px 9px;
+      align-items: center;
+      gap: 5px;
+      color: #555;
+      border: 1px solid #d6d6d6;
+      border-radius: 3px;
+      background: #fafafa;
+      font-size: 0.64rem;
       font-weight: 500;
-      line-height: 1.35;
-    }
-
-    .publication.featured .pub-title { color: var(--red); }
-    .pub-authors { margin: 7px 0 0; color: var(--muted); font-size: 0.76rem; }
-    .pub-authors strong { color: var(--ink); font-weight: 600; }
-    .pub-venue { margin: 5px 0 0; color: var(--body); font-family: var(--serif); font-size: 0.78rem; font-style: italic; }
-
-    .pub-links { display: flex; justify-content: flex-end; gap: 12px; padding-top: 2px; }
-
-    .pub-links a {
-      color: var(--muted);
-      font-size: 0.66rem;
-      font-weight: 600;
       text-decoration: none;
-      text-transform: uppercase;
     }
 
-    .pub-links a:hover { color: var(--red); }
+    .pub-button:hover { color: var(--link); border-color: #a8c7cf; background: #f4fafb; text-decoration: none; }
 
-    /* Background */
-    .background-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; }
+    /* Experience and awards */
+    .compact-list { margin: 0; padding: 0; list-style: none; }
 
-    .background-column h3 {
-      margin: 0 0 24px;
-      padding-bottom: 12px;
-      color: var(--ink);
-      border-bottom: 2px solid var(--ink);
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 500;
+    .compact-item {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px dashed #e6e6e6;
     }
 
-    .timeline-item { display: grid; grid-template-columns: 116px 1fr; gap: 20px; padding: 0 0 28px; }
-    .timeline-item:last-child { padding-bottom: 0; }
+    .compact-date { color: var(--muted); font-size: 0.71rem; }
+    .compact-item h3 { margin: 0; font-size: 0.84rem; font-weight: 600; }
+    .compact-item p { margin: 3px 0 0; color: var(--muted); font-size: 0.73rem; }
 
-    .timeline-item time {
-      padding-top: 2px;
-      color: var(--red);
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.03em;
-    }
-
-    .timeline-item h4 { margin: 0; color: var(--ink); font-family: var(--serif); font-size: 1rem; font-weight: 600; line-height: 1.4; }
-    .timeline-item p { margin: 4px 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
-    .timeline-item .detail { color: var(--body); }
-
-    /* Skills and awards */
-    .details-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 70px; }
-
-    .detail-block h3 {
-      margin: 0 0 22px;
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 500;
-    }
-
-    .skill-groups { display: grid; gap: 20px; }
-    .skill-group { display: grid; grid-template-columns: 130px 1fr; gap: 20px; }
-    .skill-group strong { color: var(--ink); font-size: 0.7rem; font-weight: 600; }
-    .skill-group p { margin: 0; color: var(--muted); font-size: 0.76rem; }
-
-    .award-list { border-top: 1px solid var(--rule-dark); }
-    .award { display: grid; grid-template-columns: 54px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
-    .award time { color: var(--red); font-size: 0.67rem; font-weight: 600; }
-    .award strong { display: block; color: var(--ink); font-family: var(--serif); font-size: 0.9rem; font-weight: 500; }
-    .award span { color: var(--muted); font-size: 0.68rem; }
+    .skills-line { margin: 20px 0 0; color: var(--muted); font-size: 0.76rem; }
+    .skills-line strong { color: var(--heading); }
 
     /* Footer */
-    .footer { padding: 62px 0 28px; color: white; background: var(--ink); }
+    footer { padding: 26px 0; border-top: 1px solid var(--line); background: #fafafa; }
 
-    .footer-main {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      padding-bottom: 50px;
-      align-items: end;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.65rem;
     }
 
-    .footer-kicker { margin: 0 0 10px; color: #d5aaa9; font-size: 0.67rem; letter-spacing: 0.13em; text-transform: uppercase; }
-
-    .footer h2 {
-      max-width: 650px;
-      margin: 0;
-      font-family: var(--serif);
-      font-size: clamp(2.1rem, 4.5vw, 4rem);
-      font-weight: 400;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
+    @media (max-width: 880px) {
+      .page-layout { grid-template-columns: 210px minmax(0, 1fr); gap: 44px; }
+      .author-photo { width: 150px; height: 150px; }
+      .publication { grid-template-columns: 145px minmax(0, 1fr); }
     }
 
-    .footer-email {
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.55);
-      font-size: 0.78rem;
-      text-decoration: none;
-    }
-
-    .footer-email:hover { color: #e5bdbc; border-color: #e5bdbc; }
-
-    .footer-bottom { display: flex; justify-content: space-between; gap: 30px; padding-top: 22px; color: rgba(255, 255, 255, 0.58); font-size: 0.64rem; letter-spacing: 0.05em; }
-
-    @media (max-width: 820px) {
-      .nav-links {
+    @media (max-width: 700px) {
+      .site-nav {
         position: fixed;
-        inset: 72px 16px auto;
+        inset: 70px 14px auto;
         display: none;
-        padding: 12px;
+        padding: 10px;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
-        border: 1px solid var(--rule);
-        background: var(--white);
-        box-shadow: 0 18px 50px rgba(23, 36, 58, 0.12);
+        border: 1px solid var(--line);
+        background: white;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
       }
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 11px 10px; }
-      .menu-button { display: block; }
-      .latest-paper { grid-template-columns: 130px 1fr; }
-      .paper-actions { grid-column: 2; flex-direction: row; }
-      .research-grid { grid-template-columns: 1fr; }
-      .research-item { min-height: auto; padding: 24px 0; }
-      .research-item + .research-item { padding-left: 0; border-left: 0; }
-      .research-item h3 { margin-top: 28px; }
-      .background-grid, .details-grid { grid-template-columns: 1fr; gap: 58px; }
+      .site-nav.open { display: flex; }
+      .site-nav a { padding: 10px; }
+      .nav-toggle { display: block; }
+      .page-layout { grid-template-columns: 1fr; padding-top: 40px; }
+      .author-profile { position: static; display: grid; grid-template-columns: 125px minmax(0, 1fr); gap: 0 24px; }
+      .author-photo { grid-row: 1 / span 5; width: 125px; height: 125px; }
+      .author-name { margin-top: 4px; }
+      .profile-heading { margin-top: 14px; }
+      .profile-list { display: flex; flex-wrap: wrap; column-gap: 13px; }
+      .profile-list li { display: inline-flex; gap: 5px; margin: 4px 0; }
+      .profile-list .long-item { display: none; }
+      .main-content { margin-top: 0; }
     }
 
-    @media (max-width: 620px) {
-      .container { width: min(var(--max), calc(100% - 32px)); }
-      section { padding: 68px 0; }
-      .hero { padding-top: 58px; }
-      .hero-grid { grid-template-columns: 1fr; gap: 44px; }
-      .portrait { width: min(250px, 76%); }
-      .portrait-caption { display: none; }
-      .hero h1 { font-size: clamp(3.5rem, 18vw, 5.1rem); }
-      .section-head { grid-template-columns: 1fr; gap: 11px; margin-bottom: 30px; }
-      .latest-wrap { margin-top: 50px; }
-      .latest-paper { grid-template-columns: 1fr; gap: 18px; }
-      .paper-actions { grid-column: 1; }
-      .paper-action { min-width: 76px; }
-      .publication { grid-template-columns: 38px 1fr; gap: 14px; }
-      .pub-links { grid-column: 2; justify-content: flex-start; }
-      .timeline-item { grid-template-columns: 88px 1fr; gap: 14px; }
-      .skill-group { grid-template-columns: 1fr; gap: 4px; }
-      .footer-main { grid-template-columns: 1fr; align-items: start; }
-      .footer-bottom { flex-direction: column; gap: 6px; }
+    @media (max-width: 520px) {
+      .container { width: min(var(--max-width), calc(100% - 30px)); }
+      .page-layout { gap: 46px; }
+      .author-profile { grid-template-columns: 100px minmax(0, 1fr); gap: 0 18px; }
+      .author-photo { width: 100px; height: 100px; }
+      .author-name { font-size: 1.05rem; }
+      .news-item { grid-template-columns: 1fr; gap: 1px; padding: 10px 0; }
+      .education-item { grid-template-columns: 55px minmax(0, 1fr); gap: 14px; }
+      .institution-mark { width: 52px; height: 52px; font-size: 0.62rem; }
+      .education-date { grid-column: 2; }
+      .publication { grid-template-columns: 1fr; gap: 13px; }
+      .paper-thumb { min-height: 98px; }
+      .compact-item { grid-template-columns: 90px 1fr; gap: 13px; }
+      .footer-inner { flex-direction: column; gap: 4px; }
     }
-
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="#about">
-        <strong>Hao Shen</strong>
-        <span>AMSS · UCAS</span>
-      </a>
-      <div class="nav-links" id="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <a class="site-title" href="#about">Hao Shen</a>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="#about">About Me</a>
+        <a href="#news">News</a>
         <a href="#publications">Publications</a>
-        <a href="#background">Background</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <button class="menu-button" id="menu-button" type="button" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false"><span></span></button>
-    </nav>
+        <a href="#experience">Experience</a>
+        <a href="mailto:shenhao24@amss.ac.cn">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+    </div>
   </header>
 
-  <main id="main">
-    <section class="hero" id="about">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="portrait">
-            <img src="photo.jpg" alt="Portrait of Hao Shen" />
-            <p class="portrait-caption">Ph.D. Student<br />Academy of Mathematics and Systems Science<br />University of Chinese Academy of Sciences</p>
-          </div>
+  <main class="container page-layout" id="main">
+    <aside class="author-profile" aria-label="Profile">
+      <div class="author-photo"><img src="photo.jpg" alt="Portrait of Hao Shen" /></div>
+      <h2 class="author-name">Hao Shen</h2>
+      <p class="author-tagline">Formal mathematics,<br />machine intelligence.</p>
 
-          <div>
-            <p class="hero-kicker">Formal Mathematics · Automated Reasoning</p>
-            <h1>Hao Shen</h1>
-            <p class="hero-role">Ph.D. Student in Applied Mathematics<br />Academy of Mathematics and Systems Science, UCAS</p>
-            <p class="hero-bio">
-              I work at the intersection of <strong>mathematics, computer science, and artificial intelligence</strong>. My research focuses on formal theorem proving, autoformalization, and certified symbolic computation—developing systems that make advanced mathematical reasoning both automated and trustworthy.
-            </p>
-            <div class="profile-links">
-              <a class="profile-link" href="mailto:shenhao24@amss.ac.cn">Email <span class="arrow">↗</span></a>
-              <a class="profile-link" href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow">↗</span></a>
-              <a class="profile-link" href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;gmla=AEk_c1s2R9hoUvZyg8O4BI7AgY8qXpuL330LLpUwlcMo1JIKP5V8Bo-S9lsee7hzm5OMU3JpyShf0giXpxZDkuve5LU&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar <span class="arrow">↗</span></a>
-              <a class="profile-link" href="https://huggingface.co/tsuki8" target="_blank" rel="noopener noreferrer">Hugging Face <span class="arrow">↗</span></a>
-            </div>
-          </div>
-        </div>
+      <p class="profile-heading">Find me</p>
+      <ul class="profile-list">
+        <li class="long-item"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Beijing, China</span></li>
+        <li class="long-item"><i class="fa-solid fa-building-columns" aria-hidden="true"></i><a href="http://english.amss.cas.cn/" target="_blank" rel="noopener noreferrer">AMSS, UCAS</a></li>
+        <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:shenhao24@amss.ac.cn">Email</a></li>
+        <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;gmla=AEk_c1s2R9hoUvZyg8O4BI7AgY8qXpuL330LLpUwlcMo1JIKP5V8Bo-S9lsee7hzm5OMU3JpyShf0giXpxZDkuve5LU&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+        <li><i class="fa-brands fa-github" aria-hidden="true"></i><a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><i class="fa-solid fa-face-smile" aria-hidden="true"></i><a href="https://huggingface.co/tsuki8" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
+      </ul>
+    </aside>
 
-        <div class="latest-wrap">
-          <article class="latest-paper">
-            <div class="latest-meta">Latest publication<time>August 2026</time></div>
-            <div class="latest-content">
-              <h2>MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</h2>
-              <p class="authors"><strong>Hao Shen</strong>, Junyu Guo, Tian Cui, Yuxuan Xiao, Lihong Zhi</p>
-              <p class="latest-abstract">A Mathlib-native agentic framework for faithful autoformalization and certified proof construction in Euclidean geometry. On 43 historical IMO geometry problems, MechGeo automatically proves 29 formalized statements and provides Lean-verified diagnosis for the remainder.</p>
-            </div>
-            <div class="paper-actions">
-              <a class="paper-action" href="https://arxiv.org/abs/2608.02295" target="_blank" rel="noopener noreferrer"><span>arXiv</span><span>↗</span></a>
-              <a class="paper-action" href="https://arxiv.org/pdf/2608.02295" target="_blank" rel="noopener noreferrer"><span>PDF</span><span>↓</span></a>
-            </div>
+    <div class="main-content">
+      <section class="content-section bio" id="about">
+        <h1>Greetings! This is Hao Shen</h1>
+        <p class="degree-line">B.Sc. WHU (2020–2024) &nbsp;·&nbsp; M.Sc. UCAS (2024–2026) &nbsp;·&nbsp; Ph.D. UCAS (2026–Present)</p>
+
+        <p>I am a Ph.D. student in Applied Mathematics at the <a href="http://english.amss.cas.cn/" target="_blank" rel="noopener noreferrer">Academy of Mathematics and Systems Science</a>, Chinese Academy of Sciences, and the University of Chinese Academy of Sciences. I am fortunate to be advised by Prof. <a href="http://www.mmrc.iss.ac.cn/~lzhi/" target="_blank" rel="noopener noreferrer">Lihong Zhi</a>.</p>
+
+        <p>Before beginning my doctoral study, I received my M.Sc. in Applied Mathematics from AMSS and my B.Sc. in Statistics from <a href="https://www.whu.edu.cn/" target="_blank" rel="noopener noreferrer">Wuhan University</a>. I also worked as an algorithm research intern at <a href="https://www.stepfun.com/company" target="_blank" rel="noopener noreferrer">StepFun</a>, focusing on autoformalization and automated theorem proving.</p>
+
+        <p>My research lies at the intersection of <strong>formal mathematics, symbolic computation, and artificial intelligence</strong>. I develop automated tools—powered by formal methods and large language models—to make mathematical reasoning more scalable, reliable, and verifiable.</p>
+
+        <div class="contact-note"><strong>Please feel free to contact me via:</strong> <a href="mailto:shenhao24@amss.ac.cn">shenhao24@amss.ac.cn</a></div>
+      </section>
+
+      <section class="content-section" id="news">
+        <h2>What’s new</h2>
+        <ul class="news-list">
+          <li class="news-item"><time class="news-date">[Aug. 3, 2026]</time><span><strong>New work:</strong> Our paper <a href="https://arxiv.org/abs/2608.02295" target="_blank" rel="noopener noreferrer">MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</a> is now on arXiv.<span class="new-label">NEW</span></span></li>
+          <li class="news-item"><time class="news-date">[Apr. 2026]</time><span>Our work <a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">Formalizing Wu-Ritt Method in Lean 4</a> is available as a preprint.</span></li>
+          <li class="news-item"><time class="news-date">[Apr. 2026]</time><span>We released <a href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer">Automated Tactics for Polynomial Reasoning in Lean 4</a>.</span></li>
+          <li class="news-item"><time class="news-date">[Feb. 2026]</time><span>Our formalization of <a href="https://arxiv.org/abs/2602.12772" target="_blank" rel="noopener noreferrer">Gröbner Basis Theory in Lean</a> is now on arXiv.</span></li>
+        </ul>
+      </section>
+
+      <section class="content-section" id="education">
+        <h2>Education</h2>
+        <div class="education-list">
+          <article class="education-item">
+            <div class="institution-mark">AMSS</div>
+            <div><h3>Academy of Mathematics and Systems Science, UCAS</h3><p>Ph.D. Student in Applied Mathematics<br />Research: AI for Mathematics · Advisor: Prof. Lihong Zhi</p></div>
+            <span class="education-date">2026–Present</span>
+          </article>
+          <article class="education-item">
+            <div class="institution-mark">AMSS</div>
+            <div><h3>Academy of Mathematics and Systems Science, UCAS</h3><p>M.Sc. in Applied Mathematics<br />Research: AI for Mathematics · Advisor: Prof. Lihong Zhi</p></div>
+            <span class="education-date">2024–2026</span>
+          </article>
+          <article class="education-item">
+            <div class="institution-mark whu">WHU</div>
+            <div><h3>Wuhan University</h3><p>B.Sc. in Statistics</p></div>
+            <span class="education-date">2020–2024</span>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="research">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label">Research</p>
-          <h2>Building reliable foundations for AI-assisted mathematics.</h2>
-        </div>
-
-        <div class="research-grid">
-          <article class="research-item">
-            <span class="research-number">01</span>
-            <h3>Formal Theorem Proving</h3>
-            <p>Mechanized verification of mathematical theorems in Lean 4 and Mathlib, with an emphasis on reusable formal foundations.</p>
-          </article>
-          <article class="research-item">
-            <span class="research-number">02</span>
-            <h3>AI for Mathematics</h3>
-            <p>Large language models and agentic systems for faithful autoformalization, proof planning, repair, and theorem proving.</p>
-          </article>
-          <article class="research-item">
-            <span class="research-number">03</span>
-            <h3>Symbolic Computation</h3>
-            <p>Certificate-based connections between computer algebra systems and proof assistants for trustworthy polynomial reasoning.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="publications">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label">Publications</p>
-          <h2>Selected preprints and research papers.</h2>
-        </div>
+      <section class="content-section" id="publications">
+        <h2>Featured Publications</h2>
+        <p class="section-note">My name is shown in bold. For the complete and current citation record, please see my <a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar profile</a>.</p>
 
         <div class="publication-list">
-          <article class="publication featured">
-            <span class="pub-index">[1]</span>
+          <article class="publication">
+            <div class="paper-thumb"><span class="thumb-topic">Formal Geometry</span><span class="thumb-mark">MechGeo</span></div>
             <div>
-              <h3 class="pub-title">MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</h3>
-              <p class="pub-authors"><strong>Hao Shen</strong>, Junyu Guo, Tian Cui, Yuxuan Xiao, Lihong Zhi</p>
-              <p class="pub-venue">arXiv preprint arXiv:2608.02295, August 2026.</p>
+              <h3>MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</h3>
+              <p class="pub-authors"><span class="me">Hao Shen</span>, Junyu Guo, Tian Cui, Yuxuan Xiao, Lihong Zhi</p>
+              <p class="pub-venue">Preprint, 2026.</p>
+              <p class="pub-description">A Mathlib-native agentic framework for faithful autoformalization, certified proof construction, and counterexample-guided diagnosis in Euclidean geometry.</p>
+              <div class="pub-buttons"><a class="pub-button" href="https://arxiv.org/pdf/2608.02295" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i> PDF</a><a class="pub-button" href="https://arxiv.org/abs/2608.02295" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link" aria-hidden="true"></i> arXiv</a></div>
             </div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2608.02295" target="_blank" rel="noopener noreferrer">arXiv ↗</a><a href="https://arxiv.org/pdf/2608.02295" target="_blank" rel="noopener noreferrer">PDF ↓</a></div>
           </article>
 
           <article class="publication">
-            <span class="pub-index">[2]</span>
+            <div class="paper-thumb wuritt"><span class="thumb-topic">Symbolic Method</span><span class="thumb-mark">Wu–Ritt</span></div>
             <div>
-              <h3 class="pub-title">Formalizing Wu-Ritt Method in Lean 4</h3>
-              <p class="pub-authors">Yuxuan Xiao, <strong>Hao Shen</strong>, Junyu Guo, Dingkang Wang, Lihong Zhi</p>
-              <p class="pub-venue">arXiv preprint arXiv:2604.14912, April 2026.</p>
+              <h3>Formalizing Wu-Ritt Method in Lean 4</h3>
+              <p class="pub-authors">Yuxuan Xiao, <span class="me">Hao Shen</span>, Junyu Guo, Dingkang Wang, Lihong Zhi</p>
+              <p class="pub-venue">Preprint, 2026.</p>
+              <p class="pub-description">Formal foundations for characteristic sets, pseudo-division, triangular decomposition, and certified polynomial-system solving.</p>
+              <div class="pub-buttons"><a class="pub-button" href="https://arxiv.org/pdf/2604.14912" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i> PDF</a><a class="pub-button" href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link" aria-hidden="true"></i> arXiv</a></div>
             </div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">arXiv ↗</a><a href="https://arxiv.org/pdf/2604.14912" target="_blank" rel="noopener noreferrer">PDF ↓</a></div>
           </article>
 
           <article class="publication">
-            <span class="pub-index">[3]</span>
+            <div class="paper-thumb algebra"><span class="thumb-topic">Proof Automation</span><span class="thumb-mark">Tactics</span></div>
             <div>
-              <h3 class="pub-title">Automated Tactics for Polynomial Reasoning in Lean 4</h3>
-              <p class="pub-authors"><strong>Hao Shen</strong>, Junyu Guo, Junqi Liu, Lihong Zhi</p>
-              <p class="pub-venue">arXiv preprint arXiv:2604.13514, April 2026.</p>
+              <h3>Automated Tactics for Polynomial Reasoning in Lean 4</h3>
+              <p class="pub-authors"><span class="me">Hao Shen</span>, Junyu Guo, Junqi Liu, Lihong Zhi</p>
+              <p class="pub-venue">Preprint, 2026.</p>
+              <p class="pub-description">Certificate-based tactics connecting external computer algebra systems with formal verification in Lean 4.</p>
+              <div class="pub-buttons"><a class="pub-button" href="https://arxiv.org/pdf/2604.13514" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i> PDF</a><a class="pub-button" href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link" aria-hidden="true"></i> arXiv</a></div>
             </div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer">arXiv ↗</a><a href="https://arxiv.org/pdf/2604.13514" target="_blank" rel="noopener noreferrer">PDF ↓</a></div>
           </article>
 
           <article class="publication">
-            <span class="pub-index">[4]</span>
+            <div class="paper-thumb grobner"><span class="thumb-topic">Formal Algebra</span><span class="thumb-mark">Gröbner</span></div>
             <div>
-              <h3 class="pub-title">Formalizing Gröbner Basis Theory in Lean</h3>
-              <p class="pub-authors">Junyu Guo, <strong>Hao Shen</strong>, Junqi Liu, Lihong Zhi</p>
-              <p class="pub-venue">arXiv preprint arXiv:2602.12772, February 2026.</p>
+              <h3>Formalizing Gröbner Basis Theory in Lean</h3>
+              <p class="pub-authors">Junyu Guo, <span class="me">Hao Shen</span>, Junqi Liu, Lihong Zhi</p>
+              <p class="pub-venue">Preprint, 2026.</p>
+              <p class="pub-description">A Mathlib formalization covering polynomial division, Buchberger’s criterion, and reduced Gröbner bases over infinitely many variables.</p>
+              <div class="pub-buttons"><a class="pub-button" href="https://arxiv.org/pdf/2602.12772" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-file-pdf" aria-hidden="true"></i> PDF</a><a class="pub-button" href="https://arxiv.org/abs/2602.12772" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-link" aria-hidden="true"></i> arXiv</a></div>
             </div>
-            <div class="pub-links"><a href="https://arxiv.org/abs/2602.12772" target="_blank" rel="noopener noreferrer">arXiv ↗</a><a href="https://arxiv.org/pdf/2602.12772" target="_blank" rel="noopener noreferrer">PDF ↓</a></div>
           </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="background">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label">Background</p>
-          <h2>Education and research experience.</h2>
-        </div>
+      <section class="content-section" id="experience">
+        <h2>Research Experience</h2>
+        <ul class="compact-list">
+          <li class="compact-item"><span class="compact-date">Apr. 2024–<br />Feb. 2025</span><div><h3>Algorithm Research Intern · StepFun</h3><p>Building and training neural networks; research on autoformalization and automated theorem proving.</p></div></li>
+          <li class="compact-item"><span class="compact-date">2022–2023</span><div><h3>Computer Vision Research</h3><p>Self-supervised learning, weakly-supervised learning, and visual representation learning.</p></div></li>
+        </ul>
 
-        <div class="background-grid">
-          <div class="background-column">
-            <h3>Education</h3>
-            <article class="timeline-item">
-              <time>2026–2029<br />expected</time>
-              <div><h4>Ph.D. in Applied Mathematics</h4><p>Academy of Mathematics and Systems Science, UCAS</p><p class="detail">Advisor: <a href="http://www.mmrc.iss.ac.cn/~lzhi/" target="_blank" rel="noopener noreferrer">Prof. Lihong Zhi</a> · AI4Math</p></div>
-            </article>
-            <article class="timeline-item">
-              <time>2024–2026</time>
-              <div><h4>M.Sc. in Applied Mathematics</h4><p>Academy of Mathematics and Systems Science, UCAS</p><p class="detail">Advisor: <a href="http://www.mmrc.iss.ac.cn/~lzhi/" target="_blank" rel="noopener noreferrer">Prof. Lihong Zhi</a> · AI4Math</p></div>
-            </article>
-            <article class="timeline-item">
-              <time>2020–2024</time>
-              <div><h4>B.Sc. in Statistics</h4><p><a href="https://www.whu.edu.cn/" target="_blank" rel="noopener noreferrer">Wuhan University</a></p></div>
-            </article>
-          </div>
+        <p class="skills-line"><strong>Technical toolkit:</strong> Lean 4, Mathlib, Python, PyTorch, SageMath, SymPy, Maple, C++, R, MATLAB, LaTeX, Git.</p>
+      </section>
 
-          <div class="background-column">
-            <h3>Experience</h3>
-            <article class="timeline-item">
-              <time>2024.04–<br />2025.02</time>
-              <div><h4>Algorithm Research Intern</h4><p><a href="https://www.stepfun.com/company" target="_blank" rel="noopener noreferrer">StepFun</a></p><p class="detail">Autoformalization and automated theorem proving</p></div>
-            </article>
-            <article class="timeline-item">
-              <time>2022–2023</time>
-              <div><h4>Computer Vision Research</h4><p>Self-supervised and weakly-supervised learning</p><p class="detail">Representation learning and visual recognition</p></div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="details">
-      <div class="container">
-        <div class="section-head">
-          <p class="section-label">Additional</p>
-          <h2>Technical toolkit and distinctions.</h2>
-        </div>
-
-        <div class="details-grid">
-          <div class="detail-block">
-            <h3>Technical Skills</h3>
-            <div class="skill-groups">
-              <div class="skill-group"><strong>Languages</strong><p>Python · Lean 4 · C++ · R · MATLAB</p></div>
-              <div class="skill-group"><strong>Formal methods</strong><p>Mathlib · Automated theorem proving · Autoformalization</p></div>
-              <div class="skill-group"><strong>Mathematics</strong><p>SageMath · SymPy · Maple · LaTeX</p></div>
-              <div class="skill-group"><strong>Machine learning</strong><p>PyTorch · Hugging Face</p></div>
-            </div>
-          </div>
-
-          <div class="detail-block">
-            <h3>Honors &amp; Awards</h3>
-            <div class="award-list">
-              <div class="award"><time>2026</time><div><strong>National Scholarship</strong><span>Ministry of Education, China</span></div></div>
-              <div class="award"><time>2024</time><div><strong>Outstanding Graduate</strong><span>Wuhan University</span></div></div>
-              <div class="award"><time>2023</time><div><strong>National Scholarship</strong><span>Ministry of Education, China</span></div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <section class="content-section" id="honors">
+        <h2>Selected Honors</h2>
+        <ul class="compact-list">
+          <li class="compact-item"><span class="compact-date">2026</span><div><h3>National Scholarship</h3><p>Ministry of Education, China</p></div></li>
+          <li class="compact-item"><span class="compact-date">2024</span><div><h3>Outstanding Graduate</h3><p>Wuhan University</p></div></li>
+          <li class="compact-item"><span class="compact-date">2023</span><div><h3>National Scholarship</h3><p>Ministry of Education, China</p></div></li>
+        </ul>
+      </section>
+    </div>
   </main>
 
-  <footer class="footer" id="contact">
-    <div class="container">
-      <div class="footer-main">
-        <div>
-          <p class="footer-kicker">Contact</p>
-          <h2>Open to conversations about formal mathematics and AI.</h2>
-        </div>
-        <a class="footer-email" href="mailto:shenhao24@amss.ac.cn">shenhao24@amss.ac.cn ↗</a>
-      </div>
-      <div class="footer-bottom"><span>© 2026 Hao Shen</span><span>Last updated August 2026 · Beijing, China</span></div>
-    </div>
+  <footer>
+    <div class="container footer-inner"><span>© 2026 Hao Shen</span><span>Last updated: August 2026</span></div>
   </footer>
 
   <script>
-    const menuButton = document.getElementById('menu-button');
-    const navLinks = document.getElementById('nav-links');
+    const navToggle = document.getElementById('nav-toggle');
+    const siteNav = document.getElementById('site-nav');
+    const navIcon = navToggle.querySelector('i');
 
-    menuButton.addEventListener('click', () => {
-      const open = navLinks.classList.toggle('open');
-      menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    navToggle.addEventListener('click', () => {
+      const open = siteNav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+      navToggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      navIcon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
     });
 
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-      });
-    });
+    siteNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      siteNav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navIcon.className = 'fa-solid fa-bars';
+    }));
 
-    const sections = [...document.querySelectorAll('main section[id], footer[id]')];
-    const links = [...navLinks.querySelectorAll('a')];
+    const sections = [...document.querySelectorAll('.content-section[id]')];
+    const links = [...siteNav.querySelectorAll('a[href^="#"]')];
 
     function updateActiveLink() {
-      const marker = window.scrollY + 140;
+      const marker = window.scrollY + 130;
       let current = sections[0].id;
       sections.forEach(section => {
         if (section.offsetTop <= marker) current = section.id;
