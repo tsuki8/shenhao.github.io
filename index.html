@@ -487,133 +487,55 @@
     .compact-item h3 { margin: 0; font-size: 0.84rem; font-weight: 600; }
     .compact-item p { margin: 3px 0 0; color: var(--muted); font-size: 0.73rem; }
 
-    /* GitHub statistics */
-    .github-panel {
-      overflow: hidden;
-      border: 1px solid #d8dfe1;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.68);
+    /* GitHub statistics — compact two-card layout matching tsliang.top */
+    .github-stats-title {
+      margin: 0 0 0.7em;
+      padding-left: 0.65em;
+      border-left: 4px solid var(--link);
+      font-size: 1.08rem;
+      font-weight: 700;
+      line-height: 1.4;
     }
 
-    .github-generated {
-      display: none;
-      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-      gap: 12px;
-      align-items: stretch;
+    .github-stats-table {
+      width: auto;
+      margin: 0 auto;
+      border: 0;
+      border-spacing: 0 0.4rem;
+      border-collapse: separate;
+      table-layout: fixed;
+      background: transparent;
     }
 
-    .github-generated.ready { display: grid; }
+    .github-stats-table[hidden] { display: none; }
 
-    .github-generated a {
-      display: flex;
-      min-width: 0;
-      overflow: hidden;
-      align-items: center;
-      border: 1px solid #d8dfe1;
-      border-radius: 5px;
-      background: rgba(255, 255, 255, 0.76);
-      text-decoration: none;
+    .github-stats-table td {
+      width: 430px;
+      padding: 0.2rem 0.35rem;
+      border: 0;
+      background: transparent;
+      text-align: center;
+      vertical-align: top;
     }
 
-    .github-generated img { width: 100%; height: auto; }
+    .github-stats-table a { display: block; text-decoration: none; }
 
-    .github-meta {
-      display: flex;
-      margin-top: 9px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      color: var(--muted);
-      font-size: 0.64rem;
-    }
-
-    .github-meta p { margin: 0; }
-    .github-meta .github-live-status { margin: 0; }
-    .github-meta a { white-space: nowrap; }
-
-    .github-setup-link[hidden],
-    .github-panel[hidden] { display: none; }
-
-    .github-panel-head {
-      display: flex;
-      padding: 17px 19px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      border-bottom: 1px solid #e3e7e8;
-    }
-
-    .github-identity { display: flex; align-items: center; gap: 10px; }
-
-    .github-identity i {
-      color: var(--heading);
-      font-size: 1.35rem;
-    }
-
-    .github-identity strong { display: block; color: var(--heading); font-size: 0.82rem; }
-    .github-identity span { display: block; margin-top: 1px; color: var(--muted); font-size: 0.65rem; }
-
-    .github-profile-link {
-      color: var(--link);
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .github-profile-link:hover { text-decoration: underline; }
-
-    .github-stat-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .github-stat {
-      min-width: 0;
-      padding: 19px;
-      border-right: 1px solid #e3e7e8;
-    }
-
-    .github-stat:last-child { border-right: 0; }
-
-    .github-stat strong {
+    .github-stats-table img {
       display: block;
-      overflow: hidden;
-      color: var(--heading);
-      font-size: 1.23rem;
-      font-weight: 600;
-      line-height: 1.2;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      width: 100%;
+      max-width: 430px;
+      height: auto;
+      margin: 0 auto;
+      border-radius: 4px;
     }
 
-    .github-stat span {
-      display: block;
-      margin-top: 6px;
+    .github-stats-empty {
+      margin: 4px 0 0;
       color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      font-size: 0.72rem;
     }
 
-    .github-live-status {
-      margin: 9px 0 0;
-      color: var(--muted);
-      font-size: 0.65rem;
-    }
-
-    .github-live-status::before {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      margin-right: 6px;
-      background: #d2a93c;
-      border-radius: 50%;
-      content: '';
-      vertical-align: 1px;
-    }
-
-    .github-live-status.loaded::before { background: #3d9b67; }
-    .github-live-status.failed::before { background: #b65d57; }
+    .github-stats-empty[hidden] { display: none; }
 
     /* Footer */
     footer { padding: 26px 0; border-top: 1px solid var(--line); background: #fafafa; }
@@ -677,11 +599,15 @@
       .aurora-orb-one { width: 105vw; height: 105vw; }
       .aurora-orb-two { width: 95vw; height: 95vw; }
       .aurora-orb-three { width: 85vw; height: 85vw; }
-      .github-stat-grid { grid-template-columns: 1fr 1fr; }
-      .github-stat:nth-child(2) { border-right: 0; }
-      .github-stat:nth-child(-n+2) { border-bottom: 1px solid #e3e7e8; }
-      .github-generated { grid-template-columns: 1fr; }
-      .github-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .github-stats-table,
+      .github-stats-table tbody,
+      .github-stats-table tr,
+      .github-stats-table td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .github-stats-table td { padding: 10px 0; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -848,28 +774,17 @@
       </section>
 
       <section class="content-section" id="github">
-        <h2>GitHub Stats</h2>
-        <div class="github-generated" id="github-generated" aria-label="GitHub statistics generated by jstrieb/github-stats">
-          <a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/tsuki8/github-stats/generated/overview.svg" alt="Overview of Hao Shen's GitHub activity" loading="lazy" /></a>
-          <a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/tsuki8/github-stats/generated/languages.svg" alt="Languages used in Hao Shen's GitHub activity" loading="lazy" /></a>
-        </div>
-        <div class="github-panel" id="github-fallback" hidden>
-          <div class="github-panel-head">
-            <div class="github-identity"><i class="fa-brands fa-github" aria-hidden="true"></i><div><strong>Hao Shen</strong><span>@tsuki8</span></div></div>
-            <a class="github-profile-link" href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">View profile ↗</a>
-          </div>
-          <div class="github-stat-grid" aria-label="GitHub statistics">
-            <div class="github-stat"><strong data-github-stat="repos">—</strong><span>Public repos</span></div>
-            <div class="github-stat"><strong data-github-stat="followers">—</strong><span>Followers</span></div>
-            <div class="github-stat"><strong data-github-stat="stars">—</strong><span>Total stars</span></div>
-            <div class="github-stat"><strong data-github-stat="language">—</strong><span>Top language</span></div>
-          </div>
-        </div>
-        <div class="github-meta">
-          <p class="github-live-status" id="github-live-status" aria-live="polite">Checking generated GitHub statistics…</p>
-          <a href="https://github.com/jstrieb/github-stats" target="_blank" rel="noopener noreferrer">Created with jstrieb/github-stats ↗</a>
-          <a class="github-setup-link" id="github-setup-link" href="https://github.com/jstrieb/github-stats/generate" target="_blank" rel="noopener noreferrer" hidden>Set up generated cards ↗</a>
-        </div>
+        <h3 class="github-stats-title">Github Stats</h3>
+        <!-- Statistics cards generated with https://github.com/jstrieb/github-stats -->
+        <table class="github-stats-table" id="github-stats-table" aria-label="GitHub statistics" hidden>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/tsuki8/github-stats/generated/overview.svg" alt="Overview of Hao Shen's GitHub activity" loading="lazy" /></a></td>
+              <td><a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/tsuki8/github-stats/generated/languages.svg" alt="Languages used in Hao Shen's GitHub activity" loading="lazy" /></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="github-stats-empty" id="github-stats-empty" aria-live="polite" hidden>GitHub statistics are being generated. <a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">View my GitHub profile ↗</a> · <a href="https://github.com/jstrieb/github-stats/generate" target="_blank" rel="noopener noreferrer">Set up the cards ↗</a></p>
       </section>
 
       <section class="content-section" id="honors">
@@ -888,77 +803,20 @@
   </footer>
 
   <script>
-    const githubStatus = document.getElementById('github-live-status');
-    const githubGenerated = document.getElementById('github-generated');
-    const githubFallback = document.getElementById('github-fallback');
-    const githubSetupLink = document.getElementById('github-setup-link');
-    const githubStatElements = Object.fromEntries(
-      [...document.querySelectorAll('[data-github-stat]')].map(element => [element.dataset.githubStat, element])
-    );
+    const githubStatsTable = document.getElementById('github-stats-table');
+    const githubStatsEmpty = document.getElementById('github-stats-empty');
+    const generatedImages = [...githubStatsTable.querySelectorAll('img')].map(image => image.src);
 
-    async function loadGitHubStats() {
-      const requestOptions = {
-        headers: {
-          Accept: 'application/vnd.github+json',
-          'X-GitHub-Api-Version': '2026-03-10'
-        }
-      };
-
-      try {
-        const userResponse = await fetch('https://api.github.com/users/tsuki8', requestOptions);
-        if (!userResponse.ok) throw new Error(`GitHub profile request failed: ${userResponse.status}`);
-        const user = await userResponse.json();
-        const pageCount = Math.max(1, Math.ceil(user.public_repos / 100));
-        const repositoryResponses = await Promise.all(
-          Array.from({ length: pageCount }, (_, page) =>
-            fetch(`https://api.github.com/users/tsuki8/repos?per_page=100&page=${page + 1}&sort=updated`, requestOptions)
-          )
-        );
-        if (repositoryResponses.some(response => !response.ok)) throw new Error('GitHub repository request failed');
-        const repositories = (await Promise.all(repositoryResponses.map(response => response.json()))).flat();
-        const totalStars = repositories.reduce((sum, repository) => sum + repository.stargazers_count, 0);
-        const languageCounts = repositories.reduce((counts, repository) => {
-          if (repository.language) counts[repository.language] = (counts[repository.language] || 0) + 1;
-          return counts;
-        }, {});
-        const topLanguage = Object.entries(languageCounts).sort((left, right) => right[1] - left[1])[0]?.[0] || '—';
-        const numberFormat = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
-
-        githubStatElements.repos.textContent = numberFormat.format(user.public_repos);
-        githubStatElements.followers.textContent = numberFormat.format(user.followers);
-        githubStatElements.stars.textContent = numberFormat.format(totalStars);
-        githubStatElements.language.textContent = topLanguage;
-        githubStatus.textContent = 'Generated cards are not configured yet; showing live public GitHub data.';
-        githubStatus.classList.add('loaded');
-      } catch (error) {
-        githubStatus.textContent = 'GitHub statistics are temporarily unavailable. Visit the profile for current data.';
-        githubStatus.classList.add('failed');
-      }
-    }
-
-    function loadGeneratedGitHubStats() {
-      const generatedImages = [
-        'https://raw.githubusercontent.com/tsuki8/github-stats/generated/overview.svg',
-        'https://raw.githubusercontent.com/tsuki8/github-stats/generated/languages.svg'
-      ];
-
-      Promise.all(generatedImages.map(source => new Promise((resolve, reject) => {
+    Promise.all(generatedImages.map(source => new Promise((resolve, reject) => {
         const image = new Image();
         image.onload = resolve;
         image.onerror = reject;
         image.src = source;
       }))).then(() => {
-        githubGenerated.classList.add('ready');
-        githubStatus.textContent = 'Automatically regenerated by GitHub Actions.';
-        githubStatus.classList.add('loaded');
-      }).catch(() => {
-        githubFallback.hidden = false;
-        githubSetupLink.hidden = false;
-        loadGitHubStats();
-      });
-    }
-
-    loadGeneratedGitHubStats();
+      githubStatsTable.hidden = false;
+    }).catch(() => {
+      githubStatsEmpty.hidden = false;
+    });
 
     const navToggle = document.getElementById('nav-toggle');
     const siteNav = document.getElementById('site-nav');
