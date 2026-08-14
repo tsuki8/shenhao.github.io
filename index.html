@@ -30,11 +30,131 @@
     body {
       margin: 0;
       color: var(--ink);
-      background: var(--paper);
+      background: transparent;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       font-size: 15px;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
+    }
+
+    html { background: #fbfcfd; }
+
+    .aurora-background {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      user-select: none;
+      background: white;
+    }
+
+    .aurora-hue,
+    .aurora-fade,
+    .aurora-grain {
+      position: absolute;
+      inset: 0;
+    }
+
+    .aurora-hue { animation: aurora-hue-shift 60s linear infinite; }
+
+    .aurora-orb {
+      position: absolute;
+      opacity: 0.48;
+      mix-blend-mode: multiply;
+    }
+
+    .aurora-orb::before {
+      position: absolute;
+      inset: 0;
+      filter: blur(100px);
+      animation: aurora-morph 15s ease-in-out infinite alternate;
+      content: '';
+    }
+
+    .aurora-orb-one {
+      top: -20%;
+      left: -20%;
+      width: 70vw;
+      height: 70vw;
+      animation: aurora-drift-one 35s ease-in-out infinite;
+    }
+
+    .aurora-orb-one::before {
+      background: linear-gradient(to right, rgb(221, 214, 254), rgb(191, 219, 254), rgb(199, 210, 254));
+    }
+
+    .aurora-orb-two {
+      right: -10%;
+      bottom: -10%;
+      width: 60vw;
+      height: 60vw;
+      animation: aurora-drift-two 40s ease-in-out -5s infinite reverse;
+    }
+
+    .aurora-orb-two::before {
+      background: linear-gradient(to right top, rgb(165, 243, 252), rgb(204, 251, 241), rgb(209, 250, 229));
+    }
+
+    .aurora-orb-three {
+      top: 30%;
+      left: 30%;
+      width: 50vw;
+      height: 50vw;
+      opacity: 0.4;
+      animation: aurora-drift-three 45s ease-in-out -10s infinite;
+    }
+
+    .aurora-orb-three::before {
+      background: linear-gradient(to right bottom, rgb(245, 208, 254), rgb(251, 207, 232), rgb(254, 205, 211));
+    }
+
+    .aurora-grain {
+      z-index: 2;
+      opacity: 0.035;
+      mix-blend-mode: darken;
+      background-image:
+        repeating-radial-gradient(circle at 17% 29%, rgba(20, 28, 35, 0.8) 0 0.35px, transparent 0.6px 3px),
+        repeating-radial-gradient(circle at 71% 63%, rgba(20, 28, 35, 0.55) 0 0.3px, transparent 0.55px 4px);
+      background-size: 5px 5px, 7px 7px;
+    }
+
+    .aurora-fade {
+      z-index: 1;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.64) 0%, rgba(255, 255, 255, 0) 70%);
+    }
+
+    @keyframes aurora-drift-one {
+      0%, 100% { transform: translate(10%, 10%) rotate(0deg) scale(1); }
+      33% { transform: translate(60%, 40%) rotate(45deg) scale(1.1); }
+      66% { transform: translate(30%, 70%) rotate(10deg) scale(0.9); }
+    }
+
+    @keyframes aurora-drift-two {
+      0%, 100% { transform: translate(-10%, -10%) rotate(0deg) scale(1); }
+      50% { transform: translate(-50%, 20%) rotate(-30deg) scale(1.2); }
+    }
+
+    @keyframes aurora-drift-three {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(40%, -40%) rotate(20deg); }
+    }
+
+    @keyframes aurora-morph {
+      0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+    }
+
+    @keyframes aurora-hue-shift {
+      from { filter: hue-rotate(0deg); }
+      to { filter: hue-rotate(360deg); }
+    }
+
+    .masthead,
+    .page-layout,
+    footer {
+      position: relative;
+      z-index: 1;
     }
 
     a { color: var(--link); text-decoration: none; }
@@ -174,7 +294,14 @@
     .profile-list a { color: #555; }
     .profile-list a:hover { color: var(--link); }
 
-    .main-content { min-width: 0; }
+    .main-content {
+      min-width: 0;
+      padding: 34px 38px 6px;
+      border: 1px solid rgba(226, 226, 226, 0.72);
+      background: rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 50px rgba(53, 82, 91, 0.045);
+      backdrop-filter: blur(16px);
+    }
 
     .content-section {
       padding: 0 0 54px;
@@ -404,7 +531,7 @@
       .profile-list { display: flex; flex-wrap: wrap; column-gap: 13px; }
       .profile-list li { display: inline-flex; gap: 5px; margin: 4px 0; }
       .profile-list .long-item { display: none; }
-      .main-content { margin-top: 0; }
+      .main-content { margin-top: 0; padding: 28px 24px 4px; }
     }
 
     @media (max-width: 520px) {
@@ -421,10 +548,41 @@
       .paper-thumb { min-height: 98px; }
       .compact-item { grid-template-columns: 90px 1fr; gap: 13px; }
       .footer-inner { flex-direction: column; gap: 4px; }
+      .main-content { padding: 24px 18px 2px; }
+      .aurora-orb-one { width: 105vw; height: 105vw; }
+      .aurora-orb-two { width: 95vw; height: 95vw; }
+      .aurora-orb-three { width: 85vw; height: 85vw; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .aurora-hue,
+      .aurora-orb,
+      .aurora-orb::before { animation: none; }
+      .aurora-orb { opacity: 0.32; }
     }
   </style>
 </head>
 <body>
+  <!--
+    Aurora background adapted from AuroraBackground.tsx by Alissa Tung in:
+    https://github.com/alissa-tung/derived-functor-llc
+    (src/web-app/app/components/AuroraBackground.tsx)
+
+    Reimplemented in framework-free HTML/CSS for Hao Shen's academic homepage.
+    The original repository currently contains no detected LICENSE file;
+    attribution is retained here at the site owner's request.
+  -->
+  <div class="aurora-background" aria-hidden="true">
+    <div class="aurora-hue">
+      <div class="aurora-orb aurora-orb-one"></div>
+      <div class="aurora-orb aurora-orb-two"></div>
+      <div class="aurora-orb aurora-orb-three"></div>
+    </div>
+    <div class="aurora-grain"></div>
+    <div class="aurora-fade"></div>
+  </div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="masthead">
