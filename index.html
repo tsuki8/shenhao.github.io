@@ -382,17 +382,18 @@
       display: grid;
       width: 66px;
       height: 66px;
+      padding: 8px;
       place-items: center;
-      color: var(--link-dark);
-      border: 1px solid #cbdade;
-      background: #f3f8f9;
-      border-radius: 50%;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+      border: 1px solid rgba(207, 215, 219, 0.82);
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 14px;
     }
 
-    .institution-mark.whu { color: #783a2c; border-color: #dbcac6; background: #faf5f3; }
+    .institution-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     .education-item h3 { margin: 0; font-size: 0.92rem; font-weight: 600; line-height: 1.4; }
     .education-item p { margin: 4px 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
@@ -591,7 +592,7 @@
       .author-name { font-size: 1.05rem; }
       .news-item { grid-template-columns: 1fr; gap: 1px; padding: 10px 0; }
       .education-item { grid-template-columns: 55px minmax(0, 1fr); gap: 14px; }
-      .institution-mark { width: 52px; height: 52px; font-size: 0.62rem; }
+      .institution-mark { width: 52px; height: 52px; padding: 6px; border-radius: 11px; }
       .education-date { grid-column: 2; }
       .publication { grid-template-columns: 1fr; gap: 13px; }
       .paper-thumb { min-height: 98px; }
@@ -705,12 +706,12 @@
         <h2>Education</h2>
         <div class="education-list">
           <article class="education-item">
-            <div class="institution-mark">AMSS</div>
+            <div class="institution-mark"><img src="assets/amss-logo.png" alt="AMSS logo" /></div>
             <div><h3>Academy of Mathematics and Systems Science, UCAS</h3><p>Ph.D. in Applied Mathematics<br />Research: AI for Mathematics · Advisor: Prof. Lihong Zhi</p></div>
             <span class="education-date">2024–Present</span>
           </article>
           <article class="education-item">
-            <div class="institution-mark whu">WHU</div>
+            <div class="institution-mark"><img src="assets/whu-logo.png" alt="Wuhan University logo" /></div>
             <div><h3>Wuhan University</h3><p>B.Sc. in Statistics</p></div>
             <span class="education-date">2020–2024</span>
           </article>
