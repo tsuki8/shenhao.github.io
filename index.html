@@ -368,6 +368,33 @@
     .news-item strong { color: var(--heading); font-weight: 600; }
     .new-label { margin-left: 6px; color: #c0392b; font-size: 0.62rem; font-weight: 700; vertical-align: 1px; }
 
+    .earlier-news {
+      margin-top: 8px;
+      padding-top: 11px;
+      border-top: 1px solid #e7e7e7;
+    }
+
+    .earlier-news summary {
+      display: inline-flex;
+      padding: 5px 9px;
+      align-items: center;
+      gap: 6px;
+      color: var(--link);
+      border: 1px solid #d6e0e2;
+      border-radius: 3px;
+      background: rgba(250, 252, 252, 0.82);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .earlier-news summary::-webkit-details-marker { display: none; }
+    .earlier-news summary::before { content: '+'; font-size: 0.82rem; line-height: 1; }
+    .earlier-news[open] summary::before { content: '\2212'; }
+    .earlier-news summary:hover { color: var(--link-dark); border-color: #aac5cb; }
+    .earlier-news .news-list { margin-top: 7px; }
+
     /* Education */
     .education-list { display: grid; gap: 24px; }
 
@@ -695,11 +722,18 @@
         <h2>What’s new</h2>
         <ul class="news-list">
           <li class="news-item"><time class="news-date">[Aug. 3, 2026]</time><span><strong>New work:</strong> Our paper <a href="https://arxiv.org/abs/2608.02295" target="_blank" rel="noopener noreferrer">MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</a> is now on arXiv.<span class="new-label">NEW</span></span></li>
-          <li class="news-item"><time class="news-date">[Jun. 2026]</time><span>Our extended abstract <a href="https://scml.risc.jku.at/pub_service/download/scml_3/3.pdf" target="_blank" rel="noopener noreferrer">Certified CAS-assisted Polynomial Reasoning in Lean 4</a> appeared in the proceedings of <strong>SCML-2026</strong>.</span></li>
-          <li class="news-item"><time class="news-date">[Apr. 2026]</time><span>Our work <a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">Formalizing Wu-Ritt Method in Lean 4</a> is available as a preprint.</span></li>
-          <li class="news-item"><time class="news-date">[Apr. 2026]</time><span>We released <a href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer">Automated Tactics for Polynomial Reasoning in Lean 4</a>.</span></li>
-          <li class="news-item"><time class="news-date">[Feb. 2026]</time><span>Our formalization of <a href="https://arxiv.org/abs/2602.12772" target="_blank" rel="noopener noreferrer">Gröbner Basis Theory in Lean</a> is now on arXiv.</span></li>
+          <li class="news-item"><time class="news-date">[Jul. 25, 2026]</time><span>Our <a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">Wu–Ritt characteristic-set formalization</a> was presented at the <a href="https://program.floc26.org/Lean-2026-07-25" target="_blank" rel="noopener noreferrer">Lean Workshop</a>, affiliated with <strong>ITP 2026</strong> at FLoC.</span></li>
+          <li class="news-item"><time class="news-date">[Jul. 22, 2026]</time><span>Our papers on <a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">formalizing the Wu–Ritt characteristic-set method</a> and <a href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer">automated tactics for polynomial reasoning</a> were accepted at <a href="https://icms-conference.org/2026/icms-2026-full-program.html" target="_blank" rel="noopener noreferrer"><strong>ICMS 2026</strong></a> and presented in its Proof Assistants, CAS, and AI session.</span></li>
+          <li class="news-item"><time class="news-date">[Jul. 6, 2026]</time><span>Our extended abstract <a href="https://scml.risc.jku.at/pub_service/download/scml_3/3.pdf" target="_blank" rel="noopener noreferrer">Certified CAS-assisted Polynomial Reasoning in Lean 4</a> appeared in the proceedings of <a href="https://scml.risc.jku.at/conference-2026/program/SCML-program.pdf" target="_blank" rel="noopener noreferrer"><strong>SCML 2026</strong></a> and was presented at the conference.</span></li>
         </ul>
+        <details class="earlier-news">
+          <summary>Earlier news</summary>
+          <ul class="news-list">
+            <li class="news-item"><time class="news-date">[Apr. 16, 2026]</time><span>Our work <a href="https://arxiv.org/abs/2604.14912" target="_blank" rel="noopener noreferrer">Formalizing Wu-Ritt Method in Lean 4</a> became available as a preprint.</span></li>
+            <li class="news-item"><time class="news-date">[Apr. 15, 2026]</time><span>We released <a href="https://arxiv.org/abs/2604.13514" target="_blank" rel="noopener noreferrer">Automated Tactics for Polynomial Reasoning in Lean 4</a>.</span></li>
+            <li class="news-item"><time class="news-date">[Feb. 2026]</time><span>Our formalization of <a href="https://arxiv.org/abs/2602.12772" target="_blank" rel="noopener noreferrer">Gröbner Basis Theory in Lean</a> became available on arXiv.</span></li>
+          </ul>
+        </details>
       </section>
 
       <section class="content-section" id="education">
