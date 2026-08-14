@@ -487,8 +487,94 @@
     .compact-item h3 { margin: 0; font-size: 0.84rem; font-weight: 600; }
     .compact-item p { margin: 3px 0 0; color: var(--muted); font-size: 0.73rem; }
 
-    .skills-line { margin: 20px 0 0; color: var(--muted); font-size: 0.76rem; }
-    .skills-line strong { color: var(--heading); }
+    /* GitHub statistics */
+    .github-panel {
+      overflow: hidden;
+      border: 1px solid #d8dfe1;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .github-panel-head {
+      display: flex;
+      padding: 17px 19px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #e3e7e8;
+    }
+
+    .github-identity { display: flex; align-items: center; gap: 10px; }
+
+    .github-identity i {
+      color: var(--heading);
+      font-size: 1.35rem;
+    }
+
+    .github-identity strong { display: block; color: var(--heading); font-size: 0.82rem; }
+    .github-identity span { display: block; margin-top: 1px; color: var(--muted); font-size: 0.65rem; }
+
+    .github-profile-link {
+      color: var(--link);
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .github-profile-link:hover { text-decoration: underline; }
+
+    .github-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .github-stat {
+      min-width: 0;
+      padding: 19px;
+      border-right: 1px solid #e3e7e8;
+    }
+
+    .github-stat:last-child { border-right: 0; }
+
+    .github-stat strong {
+      display: block;
+      overflow: hidden;
+      color: var(--heading);
+      font-size: 1.23rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .github-stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.62rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .github-live-status {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 0.65rem;
+    }
+
+    .github-live-status::before {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 6px;
+      background: #d2a93c;
+      border-radius: 50%;
+      content: '';
+      vertical-align: 1px;
+    }
+
+    .github-live-status.loaded::before { background: #3d9b67; }
+    .github-live-status.failed::before { background: #b65d57; }
 
     /* Footer */
     footer { padding: 26px 0; border-top: 1px solid var(--line); background: #fafafa; }
@@ -552,6 +638,9 @@
       .aurora-orb-one { width: 105vw; height: 105vw; }
       .aurora-orb-two { width: 95vw; height: 95vw; }
       .aurora-orb-three { width: 85vw; height: 85vw; }
+      .github-stat-grid { grid-template-columns: 1fr 1fr; }
+      .github-stat:nth-child(2) { border-right: 0; }
+      .github-stat:nth-child(-n+2) { border-bottom: 1px solid #e3e7e8; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -593,6 +682,7 @@
         <a href="#news">News</a>
         <a href="#publications">Publications</a>
         <a href="#experience">Experience</a>
+        <a href="#github">GitHub</a>
         <a href="mailto:shenhao24@amss.ac.cn">Contact</a>
       </nav>
       <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open navigation" aria-controls="site-nav" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
@@ -610,7 +700,7 @@
         <li class="long-item"><i class="fa-solid fa-location-dot" aria-hidden="true"></i><span>Beijing, China</span></li>
         <li class="long-item"><i class="fa-solid fa-building-columns" aria-hidden="true"></i><a href="http://english.amss.cas.cn/" target="_blank" rel="noopener noreferrer">AMSS, UCAS</a></li>
         <li><i class="fa-solid fa-envelope" aria-hidden="true"></i><a href="mailto:shenhao24@amss.ac.cn">Email</a></li>
-        <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;gmla=AEk_c1s2R9hoUvZyg8O4BI7AgY8qXpuL330LLpUwlcMo1JIKP5V8Bo-S9lsee7hzm5OMU3JpyShf0giXpxZDkuve5LU&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+        <li><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i><a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;gmla=AO4B3ju5EYSREvJ7df3M8syoG3_8dlMmVOWGZX09EZCkupEg-uXYw-L4dqmZOyMGViQVVtMWLZybehY5PH2uQqNosIo&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
         <li><i class="fa-brands fa-github" aria-hidden="true"></i><a href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         <li><i class="fa-solid fa-face-smile" aria-hidden="true"></i><a href="https://huggingface.co/tsuki8" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
       </ul>
@@ -663,7 +753,7 @@
 
       <section class="content-section" id="publications">
         <h2>Featured Publications</h2>
-        <p class="section-note">My name is shown in bold. For the complete and current citation record, please see my <a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar profile</a>.</p>
+        <p class="section-note">My name is shown in bold. For the complete and current citation record, please see my <a href="https://scholar.google.com/citations?hl=zh-CN&amp;view_op=list_works&amp;gmla=AO4B3ju5EYSREvJ7df3M8syoG3_8dlMmVOWGZX09EZCkupEg-uXYw-L4dqmZOyMGViQVVtMWLZybehY5PH2uQqNosIo&amp;user=XospOfAAAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar profile</a>.</p>
 
         <div class="publication-list">
           <article class="publication">
@@ -718,8 +808,23 @@
           <li class="compact-item"><span class="compact-date">Apr. 2024–<br />Feb. 2025</span><div><h3>Algorithm Research Intern · StepFun</h3><p>Building and training neural networks; research on autoformalization and automated theorem proving.</p></div></li>
           <li class="compact-item"><span class="compact-date">2022–2023</span><div><h3>Computer Vision Research</h3><p>Self-supervised learning, weakly-supervised learning, and visual representation learning.</p></div></li>
         </ul>
+      </section>
 
-        <p class="skills-line"><strong>Technical toolkit:</strong> Lean 4, Mathlib, Python, PyTorch, SageMath, SymPy, Maple, C++, R, MATLAB, LaTeX, Git.</p>
+      <section class="content-section" id="github">
+        <h2>GitHub Stats</h2>
+        <div class="github-panel">
+          <div class="github-panel-head">
+            <div class="github-identity"><i class="fa-brands fa-github" aria-hidden="true"></i><div><strong>Hao Shen</strong><span>@tsuki8</span></div></div>
+            <a class="github-profile-link" href="https://github.com/tsuki8" target="_blank" rel="noopener noreferrer">View profile ↗</a>
+          </div>
+          <div class="github-stat-grid" aria-label="GitHub statistics">
+            <div class="github-stat"><strong data-github-stat="repos">—</strong><span>Public repos</span></div>
+            <div class="github-stat"><strong data-github-stat="followers">—</strong><span>Followers</span></div>
+            <div class="github-stat"><strong data-github-stat="stars">—</strong><span>Total stars</span></div>
+            <div class="github-stat"><strong data-github-stat="language">—</strong><span>Top language</span></div>
+          </div>
+        </div>
+        <p class="github-live-status" id="github-live-status" aria-live="polite">Loading live data from GitHub…</p>
       </section>
 
       <section class="content-section" id="honors">
@@ -738,6 +843,53 @@
   </footer>
 
   <script>
+    const githubStatus = document.getElementById('github-live-status');
+    const githubStatElements = Object.fromEntries(
+      [...document.querySelectorAll('[data-github-stat]')].map(element => [element.dataset.githubStat, element])
+    );
+
+    async function loadGitHubStats() {
+      const requestOptions = {
+        headers: {
+          Accept: 'application/vnd.github+json',
+          'X-GitHub-Api-Version': '2026-03-10'
+        }
+      };
+
+      try {
+        const userResponse = await fetch('https://api.github.com/users/tsuki8', requestOptions);
+        if (!userResponse.ok) throw new Error(`GitHub profile request failed: ${userResponse.status}`);
+        const user = await userResponse.json();
+        const pageCount = Math.max(1, Math.ceil(user.public_repos / 100));
+        const repositoryResponses = await Promise.all(
+          Array.from({ length: pageCount }, (_, page) =>
+            fetch(`https://api.github.com/users/tsuki8/repos?per_page=100&page=${page + 1}&sort=updated`, requestOptions)
+          )
+        );
+        if (repositoryResponses.some(response => !response.ok)) throw new Error('GitHub repository request failed');
+        const repositories = (await Promise.all(repositoryResponses.map(response => response.json()))).flat();
+        const totalStars = repositories.reduce((sum, repository) => sum + repository.stargazers_count, 0);
+        const languageCounts = repositories.reduce((counts, repository) => {
+          if (repository.language) counts[repository.language] = (counts[repository.language] || 0) + 1;
+          return counts;
+        }, {});
+        const topLanguage = Object.entries(languageCounts).sort((left, right) => right[1] - left[1])[0]?.[0] || '—';
+        const numberFormat = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+
+        githubStatElements.repos.textContent = numberFormat.format(user.public_repos);
+        githubStatElements.followers.textContent = numberFormat.format(user.followers);
+        githubStatElements.stars.textContent = numberFormat.format(totalStars);
+        githubStatElements.language.textContent = topLanguage;
+        githubStatus.textContent = 'Live public data from GitHub.';
+        githubStatus.classList.add('loaded');
+      } catch (error) {
+        githubStatus.textContent = 'Live statistics are temporarily unavailable. Visit the GitHub profile for current data.';
+        githubStatus.classList.add('failed');
+      }
+    }
+
+    loadGitHubStats();
+
     const navToggle = document.getElementById('nav-toggle');
     const siteNav = document.getElementById('site-nav');
     const navIcon = navToggle.querySelector('i');
