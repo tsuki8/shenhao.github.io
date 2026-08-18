@@ -578,6 +578,21 @@
       font-size: 0.65rem;
     }
 
+    .footer-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .visitor-counter {
+      color: #8b8e93;
+      cursor: help;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .visitor-counter[hidden] { display: none; }
+
     @media (max-width: 880px) {
       .page-layout { grid-template-columns: 210px minmax(0, 1fr); gap: 44px; }
       .author-photo { width: 150px; height: 150px; }
@@ -625,6 +640,7 @@
       .paper-thumb { min-height: 98px; }
       .compact-item { grid-template-columns: 90px 1fr; gap: 13px; }
       .footer-inner { flex-direction: column; gap: 4px; }
+      .footer-meta { flex-wrap: wrap; gap: 4px 12px; }
       .main-content { padding: 24px 18px 2px; }
       .aurora-orb-one { width: 105vw; height: 105vw; }
       .aurora-orb-two { width: 95vw; height: 95vw; }
@@ -837,10 +853,35 @@
   </main>
 
   <footer>
-    <div class="container footer-inner"><span>© 2026 Hao Shen</span><span>Last updated: August 2026</span></div>
+    <div class="container footer-inner">
+      <span>© 2026 Hao Shen</span>
+      <span class="footer-meta">
+        <span class="visitor-counter" id="visitor-counter" title="Approximate unique visitors since August 2026." aria-label="Approximate unique visitors since August 2026" hidden>Visitors · <span id="visitor-count"></span></span>
+        <span>Last updated: August 2026</span>
+      </span>
+    </div>
   </footer>
 
   <script>
+    const visitorCounter = document.getElementById('visitor-counter');
+    const visitorCount = document.getElementById('visitor-count');
+
+    fetch('https://counterapi.com/api/shenhao.github.io/view/homepage', {
+      cache: 'no-store',
+      credentials: 'omit',
+      referrerPolicy: 'no-referrer'
+    }).then(response => {
+      if (!response.ok) throw new Error('Visitor counter unavailable');
+      return response.json();
+    }).then(data => {
+      const count = Number(data.count ?? data.value);
+      if (!Number.isFinite(count)) throw new Error('Invalid visitor count');
+      visitorCount.textContent = new Intl.NumberFormat('en-US').format(count);
+      visitorCounter.hidden = false;
+    }).catch(() => {
+      visitorCounter.hidden = true;
+    });
+
     const githubStatsTable = document.getElementById('github-stats-table');
     const githubStatsEmpty = document.getElementById('github-stats-empty');
     const generatedImages = [...githubStatsTable.querySelectorAll('img')].map(image => image.src);
