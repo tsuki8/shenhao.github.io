@@ -22,7 +22,7 @@
       --line: #e2e2e2;
       --soft: #f7f7f7;
       --paper: #fff;
-      --max-width: 1180px;
+      --max-width: 1320px;
     }
 
     html { scroll-behavior: smooth; scroll-padding-top: 86px; }
@@ -231,8 +231,9 @@
     /* Two-column academic layout */
     .page-layout {
       display: grid;
-      grid-template-columns: 250px minmax(0, 1fr);
-      gap: clamp(54px, 7vw, 92px);
+      /* A 23.6% / 76.4% split, extended from the golden ratio. */
+      grid-template-columns: minmax(230px, 1fr) minmax(0, 3.236fr);
+      gap: clamp(56px, 5.5vw, 72px);
       padding: 58px 0 82px;
       align-items: start;
     }
