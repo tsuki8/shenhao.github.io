@@ -439,43 +439,35 @@
 
     .paper-thumb {
       position: relative;
-      display: grid;
-      min-height: 112px;
+      display: block;
+      aspect-ratio: 720 / 474;
+      min-height: 0;
       overflow: hidden;
-      padding: 14px;
-      align-content: space-between;
-      color: white;
-      background: #466d78;
-      border: 1px solid rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(31, 42, 49, 0.14);
+      border-radius: 5px;
+      background: #fff;
+      box-shadow: 0 4px 13px rgba(31, 42, 49, 0.07);
+      transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      text-decoration: none;
     }
 
-    .paper-thumb::before {
-      content: '';
-      position: absolute;
-      right: -18px;
-      bottom: -28px;
-      width: 104px;
-      height: 104px;
-      border: 1px solid rgba(255, 255, 255, 0.55);
-      border-radius: 50%;
+    .paper-thumb:hover {
+      border-color: rgba(40, 123, 142, 0.46);
+      box-shadow: 0 7px 18px rgba(31, 42, 49, 0.11);
+      transform: translateY(-1px);
+      text-decoration: none;
     }
 
-    .paper-thumb::after {
-      content: '';
-      position: absolute;
-      right: 23px;
-      bottom: 18px;
-      width: 78px;
-      height: 1px;
-      background: rgba(255, 255, 255, 0.65);
-      transform: rotate(-31deg);
+    .paper-thumb:focus-visible {
+      outline: 2px solid var(--link);
+      outline-offset: 3px;
     }
 
-    .paper-thumb.algebra { background: #59617c; }
-    .paper-thumb.wuritt { background: #775d58; }
-    .paper-thumb.grobner { background: #5f786a; }
-    .thumb-topic { position: relative; z-index: 1; font-size: 0.58rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; }
-    .thumb-mark { position: relative; z-index: 1; font-family: Georgia, serif; font-size: 1.48rem; font-style: italic; line-height: 1; }
+    .paper-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
     .publication h3 { margin: 0 0 6px; font-size: 0.96rem; font-weight: 600; line-height: 1.42; }
     .pub-authors { margin: 0; color: #555; font-size: 0.74rem; line-height: 1.55; }
@@ -774,7 +766,9 @@
 
         <div class="publication-list">
           <article class="publication">
-            <div class="paper-thumb"><span class="thumb-topic">Formal Geometry</span><span class="thumb-mark">MechGeo</span></div>
+            <a class="paper-thumb" href="https://arxiv.org/pdf/2608.02295" target="_blank" rel="noopener noreferrer" aria-label="Open the MechGeo paper PDF">
+              <img src="assets/papers/mechgeo.webp" alt="Two geometry configurations from the MechGeo paper: the intended diagram and a counterexample" loading="lazy" decoding="async" />
+            </a>
             <div>
               <h3>MechGeo: Autoformalizing and Proving Euclidean Geometry in Lean 4</h3>
               <p class="pub-authors"><span class="me">Hao Shen</span>, Junyu Guo, Tian Cui, Yuxuan Xiao, Lihong Zhi</p>
@@ -785,7 +779,9 @@
           </article>
 
           <article class="publication">
-            <div class="paper-thumb wuritt"><span class="thumb-topic">Symbolic Method</span><span class="thumb-mark">Wu–Ritt</span></div>
+            <a class="paper-thumb" href="https://arxiv.org/pdf/2604.14912" target="_blank" rel="noopener noreferrer" aria-label="Open the Wu-Ritt paper PDF">
+              <img src="assets/papers/wu-ritt.webp" alt="Title and abstract excerpt from the Wu-Ritt method paper" loading="lazy" decoding="async" />
+            </a>
             <div>
               <h3>Formalizing the Wu-Ritt Characteristic Set Method in Lean 4</h3>
               <p class="pub-authors">Yuxuan Xiao, <span class="me">Hao Shen</span>, Junyu Guo, Dingkang Wang, Lihong Zhi</p>
@@ -796,7 +792,9 @@
           </article>
 
           <article class="publication">
-            <div class="paper-thumb algebra"><span class="thumb-topic">Proof Automation</span><span class="thumb-mark">Tactics</span></div>
+            <a class="paper-thumb" href="https://arxiv.org/pdf/2604.13514" target="_blank" rel="noopener noreferrer" aria-label="Open the automated tactics paper PDF">
+              <img src="assets/papers/polynomial-tactics.webp" alt="Title and abstract excerpt from the automated polynomial tactics paper" loading="lazy" decoding="async" />
+            </a>
             <div>
               <h3>Automated Tactics for Polynomial Reasoning in Lean 4</h3>
               <p class="pub-authors"><span class="me">Hao Shen</span>, Junyu Guo, Junqi Liu, Lihong Zhi</p>
@@ -807,7 +805,9 @@
           </article>
 
           <article class="publication">
-            <div class="paper-thumb grobner"><span class="thumb-topic">Formal Algebra</span><span class="thumb-mark">Gröbner</span></div>
+            <a class="paper-thumb" href="https://arxiv.org/pdf/2602.12772" target="_blank" rel="noopener noreferrer" aria-label="Open the Gröbner basis paper PDF">
+              <img src="assets/papers/grobner-basis.webp" alt="Dependency graph of the Gröbner basis formalization" loading="lazy" decoding="async" />
+            </a>
             <div>
               <h3>Formalizing Gröbner Basis Theory in Lean</h3>
               <p class="pub-authors">Junyu Guo, <span class="me">Hao Shen</span>, Junqi Liu, Lihong Zhi</p>
